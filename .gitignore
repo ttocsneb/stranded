@@ -33,3 +33,7 @@ local.properties
 .gradle
 gradle-app.setting
 build/
+
+## RUBE
+
+*.rube-backups
