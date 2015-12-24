@@ -1,9 +1,12 @@
 package com.ttocsneb.stranded.desktop;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings;
 import com.ttocsneb.stranded.Stranded;
 
 /**
@@ -16,12 +19,12 @@ import com.ttocsneb.stranded.Stranded;
 public class DesktopLauncher {
 
 	// TODO remember to set pack to false when deploying!
-	//private static final boolean pack = true, debug = false;
-	//private static final String textureDir = "../../raw/";
+	private static final boolean pack = true, debug = false;
+	private static final String textureDir = "../../raw/";
 
 	public static void main(String[] arg) throws FileNotFoundException {
 
-		/*// check if we should re-pack the textures, and if the directory is
+		// check if we should re-pack the textures, and if the directory is
 		// valid.
 		if (pack) {
 			if (new File(textureDir).isDirectory() == true) {
@@ -45,7 +48,7 @@ public class DesktopLauncher {
 						+ " is not a real directory!");
 			}
 
-		}*/
+		}
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width;

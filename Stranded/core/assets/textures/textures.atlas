@@ -1,0 +1,36 @@
+
+textures.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+background
+  rotate: false
+  xy: 2, 632
+  size: 1920, 1080
+  orig: 1920, 1080
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 1924, 1604
+  size: 109, 108
+  split: 16, 85, 16, 47
+  pad: 15, 15, 18, 15
+  orig: 109, 108
+  offset: 0, 0
+  index: -1
+futureui1
+  rotate: false
+  xy: 2, 350
+  size: 820, 280
+  orig: 820, 280
+  offset: 0, 0
+  index: -1
+tmpship
+  rotate: false
+  xy: 2, 2
+  size: 509, 346
+  orig: 509, 346
+  offset: 0, 0
+  index: -1

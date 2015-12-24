@@ -2,6 +2,8 @@ package com.ttocsneb.stranded.util.screen;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.ttocsneb.stranded.util.Assets;
 
 public abstract class AbstractGameScreen implements Screen {
 	protected DirectedGame game;
@@ -23,15 +25,13 @@ public abstract class AbstractGameScreen implements Screen {
 
 	@Override
 	public void resume() {
-		//Temporarily disabling Assets
-		//if(!Assets.instance.isLoaded())
-		//	Assets.instance.init(new AssetManager());
+		if(!Assets.instance.isLoaded())
+			Assets.instance.init(new AssetManager());
 	}
 
 	@Override
 	public void dispose() {
-		//Temporarily disabling Assets
-		//Assets.instance.dispose();
+		Assets.instance.dispose();
 	}
 	
 	/**

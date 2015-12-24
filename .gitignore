@@ -15,6 +15,7 @@ hs_err_pid*
 .classpath
 .project
 .metadata
+.recommenders
 **/bin/
 tmp/
 *.tmp

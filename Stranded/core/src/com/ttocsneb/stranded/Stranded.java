@@ -3,6 +3,7 @@ package com.ttocsneb.stranded;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -35,12 +36,11 @@ public class Stranded extends DirectedGame {
 		Global.Config.load();
 
 		// Init the assets.
-		//Temporarily not initiating assets, for whatever reason.
-		//Assets.instance.init(new AssetManager());
+		Assets.instance.init(new AssetManager());
 
 		// start the loading screen
 		ScreenTransition fade = ScreenTransitionFade.init(0.5f);
-		setScreen(new MenuScreen(this), fade);
+		setScreen(new LoadScreen(this), fade);
 
 	}
 
@@ -50,7 +50,6 @@ public class Stranded extends DirectedGame {
 	 * @author TtocsNeb
 	 *
 	 */
-	@SuppressWarnings("unused")
 	private class LoadScreen extends AbstractGameScreen {
 
 		private float prog;

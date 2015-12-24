@@ -3,41 +3,72 @@ package com.ttocsneb.stranded.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.utils.Scaling;
-import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.ttocsneb.stranded.game.GameScreen;
+import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
-import com.uwsoft.editor.renderer.SceneLoader;
+import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
+import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
+
 /**
  * @author TtocsNeb
  *
  *
  */
 public class MenuScreen extends AbstractGameScreen {
+
+	InputListener input;
+
+	Stage stage;
 	
-	SceneLoader s1;
-	Viewport view;
-	
+
 	/**
 	 * @param game
+	 * 
+	 *            Initialize a new Menu Screen.
 	 */
 	public MenuScreen(DirectedGame game) {
 		super(game);
+		input = new InputListener(this);
 	}
 
 	@Override
 	public void show() {
 		initStage();
-		
-		
+
 	}
 
+	/**
+	 * Setup the stage, and populate it.
+	 */
 	private void initStage() {
 
-		view = new ScalingViewport(Scaling.stretch, 16, 9);
-		s1 = new SceneLoader();
-		s1.loadScene("MainScene", view);
+		// Setup the Stage
+		stage = new Stage(new ScreenViewport());
+		
+		
+		Table t = new Table();
+		t.setFillParent(true);
+		stage.addActor(t);
+		
+		//Populate the stage with ... stuff.
+		TextButton button = new TextButton("Play", Assets.instance.skins.skin);
+		button.addListener(new ChangeListener() {
+			
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				ScreenTransition transition = ScreenTransitionFade.init(1);
+				game.setScreen(new GameScreen(game), transition);
+			}
+		});
+		t.add(button);
+
 	}
 
 	@Override
@@ -46,14 +77,14 @@ public class MenuScreen extends AbstractGameScreen {
 				| GL20.GL_DEPTH_BUFFER_BIT
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
-		s1.getEngine().update(delta);
 		
+		stage.act(delta);
+		stage.draw();
+
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		view.update(width, height);
-		view.apply();
 		
 	}
 
@@ -64,11 +95,12 @@ public class MenuScreen extends AbstractGameScreen {
 
 	@Override
 	public void hide() {
+		stage.dispose();
 	}
 
 	@Override
 	public InputProcessor getInputProcessor() {
-		return null;
+		return input;
 	}
 
 }

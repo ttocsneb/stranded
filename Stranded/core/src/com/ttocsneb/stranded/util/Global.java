@@ -26,7 +26,7 @@ public class Global {
 	public static final Color ORANGE = new Color(250/255f, 128/255f, 40/255f, 1);
 	public static final Color BLUE = new Color(49/255f, 136/255f, 183/255f, 1);
 	public static final Color GREEN = new Color(63/255f, 193/255f, 91/255f, 1);
-
+	
 	/**
 	 * Performs a linear interpolation
 	 * 
