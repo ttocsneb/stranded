@@ -13,9 +13,9 @@ Stranded is about a person who gets stuck on a *space ship*/*space station*/*spa
 * **[raw][raw]**: contains the raw assets.
 
 
-###### *Note: Stranded is only a project name, and will **probably** not be the final name.*
+###### *Note: Stranded is only a project name, and will probably not be the final name.*
 
 [rube]: https://github.com/ttocsneb/stranded/tree/master/RUBE
 [stranded]: https://github.com/ttocsneb/stranded/tree/master/Stranded
-[plans]: https://github.com/ttocsneb/stranded/tree/master/dev_log
+[plans]: https://github.com/ttocsneb/stranded/tree/master/dev%20log
 [raw]: https://github.com/ttocsneb/stranded/tree/master/raw
