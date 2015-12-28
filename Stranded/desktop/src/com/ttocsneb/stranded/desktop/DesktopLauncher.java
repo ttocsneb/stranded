@@ -19,7 +19,7 @@ import com.ttocsneb.stranded.Stranded;
 public class DesktopLauncher {
 
 	// TODO remember to set pack to false when deploying!
-	private static final boolean pack = true, debug = false;
+	private static final boolean pack = false, debug = false;
 	private static final String textureDir = "../../raw/";
 
 	public static void main(String[] arg) throws FileNotFoundException {

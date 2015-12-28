@@ -33,6 +33,7 @@ local.properties
 .gradle
 gradle-app.setting
 build/
+!stranded/gradle/wrapper/gradle-wrapper.jar
 
 ## RUBE
 
