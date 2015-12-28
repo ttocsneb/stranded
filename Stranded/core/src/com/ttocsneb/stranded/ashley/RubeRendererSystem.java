@@ -55,10 +55,39 @@ public class RubeRendererSystem extends EntitySystem {
 		textures = new HashMap<String, TextureRegion>();
 
 		// Manually load the hashmap with images. -_-
-		textures.put("../../../../raw/textures/tmpship.png",
-				Assets.instance.textures.spaceShip);
-		textures.put("../../../../raw/textures/background.png",
-				Assets.instance.textures.background);
+
+		textures.put("spaceStationExplosion/pan0.png",
+				Assets.instance.textures.station.pan0);
+		textures.put("spaceStationExplosion/pan1.png",
+				Assets.instance.textures.station.pan1);
+		textures.put("spaceStationExplosion/pan2.png",
+				Assets.instance.textures.station.pan2);
+		textures.put("spaceStationExplosion/pan3.png",
+				Assets.instance.textures.station.pan3);
+		textures.put("spaceStationExplosion/pan4.png",
+				Assets.instance.textures.station.pan4);
+		textures.put("spaceStationExplosion/pan5.png",
+				Assets.instance.textures.station.pan5);
+		textures.put("spaceStationExplosion/pan6.png",
+				Assets.instance.textures.station.pan6);
+		textures.put("spaceStationExplosion/pan7.png",
+				Assets.instance.textures.station.pan7);
+
+		textures.put("spaceStationExplosion/arm0.png",
+				Assets.instance.textures.station.arm0);
+
+		textures.put("spaceStationExplosion/sat0.png",
+				Assets.instance.textures.station.sat0);
+		textures.put("spaceStationExplosion/sat1.png",
+				Assets.instance.textures.station.sat1);
+		textures.put("spaceStationExplosion/sat2.png",
+				Assets.instance.textures.station.sat2);
+
+		textures.put("spaceStationExplosion/Asteroid.png",
+				Assets.instance.textures.asteroid);
+
+		textures.put("tmpship.png", Assets.instance.textures.spaceShip);
+		textures.put("background.png", Assets.instance.textures.background);
 	}
 
 	/**
@@ -97,7 +126,10 @@ public class RubeRendererSystem extends EntitySystem {
 	@Override
 	public void update(float delta) {
 		Vector2 pos = new Vector2();
+		Vector2 tmp = new Vector2();
+		float angle;
 		float rot;
+		float dist;
 
 		// Order the keys from the hashmap, from least to greatest.
 		SortedSet<Integer> keys = new TreeSet<Integer>(images.keySet());
@@ -122,7 +154,43 @@ public class RubeRendererSystem extends EntitySystem {
 
 						// Find the bottom left corner of the image.
 						pos.set(image.body.getPosition());
-						pos.sub(image.center);
+
+						Gdx.app.debug("RubeRenderer", "Rot: "
+								+ MathUtils.radiansToDegrees
+								* image.angleInRads);
+
+						// If the offset of the image is not zero, do this vvv
+						if (!(image.center.x == 0 && image.center.y == 0)) {
+							// Get the angle from the offset.
+							angle = (float) Math.atan2(image.center.y,
+									image.center.x);
+							// find the distance of the offset.
+							dist = (float) Math.sqrt(Math
+									.pow(image.center.x, 2)
+									+ Math.pow(image.center.y, 2));
+
+							// get the current x, y values. ArcTangents can be
+							// 180 degrees off, we need to check if they are
+							// off.
+							tmp.set(MathUtils.sin(angle) * dist,
+									MathUtils.cos(angle) * dist);
+
+							// Check if the angle is 180 degrees offset, and
+							// compensate
+							if (tmp.x == -image.center.x
+									&& tmp.y == -image.center.y) {
+								angle += Math.PI;
+							}
+
+							// Add the rotation of the body to the image.
+							angle += image.body.getAngle();
+
+							// calculate the the absolute center of the image.
+							pos.add(MathUtils.cos(angle) * dist,
+									MathUtils.sin(angle) * dist);
+						}
+
+						// get the bottom left corner of the image.
 						pos.sub(image.width / 2, image.height / 2);
 
 						// Get the rotation of the image.
@@ -130,8 +198,7 @@ public class RubeRendererSystem extends EntitySystem {
 
 						// Draw the image.
 						Global.batch.draw(reg.getTexture(), pos.x, pos.y,
-								image.center.x + image.width / 2,
-								image.center.y + image.height / 2, image.width,
+								image.width / 2, image.height / 2, image.width,
 								image.height, (image.flip ? -1 : 1), 1, rot
 										* MathUtils.radiansToDegrees,
 								reg.getRegionX(), reg.getRegionY(),
@@ -152,6 +219,7 @@ public class RubeRendererSystem extends EntitySystem {
 								reg.getRegionWidth(), reg.getRegionHeight(),
 								false, false);
 					}
+
 				} else {
 					// If there is no image associated, get real angry about it.
 					Gdx.app.error("RubeRendererSystem;update", image.file

@@ -6,31 +6,121 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 2, 632
+  xy: 2, 112
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1924, 1604
+  xy: 2, 2
   size: 109, 108
   split: 16, 85, 16, 47
   pad: 15, 15, 18, 15
   orig: 109, 108
   offset: 0, 0
   index: -1
-futureui1
-  rotate: false
-  xy: 2, 350
-  size: 820, 280
-  orig: 820, 280
-  offset: 0, 0
-  index: -1
 tmpship
   rotate: false
+  xy: 1924, 1123
+  size: 102, 69
+  orig: 102, 69
+  offset: 0, 0
+  index: -1
+
+textures2.png
+size: 256,256
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+spaceStationExplosion/Asteroid
+  rotate: false
+  xy: 2, 114
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/arm0
+  rotate: false
   xy: 2, 2
-  size: 509, 346
-  orig: 509, 346
+  size: 62, 16
+  orig: 62, 16
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan0
+  rotate: false
+  xy: 2, 20
+  size: 64, 60
+  orig: 64, 60
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan1
+  rotate: false
+  xy: 132, 145
+  size: 51, 63
+  orig: 51, 63
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan2
+  rotate: false
+  xy: 68, 22
+  size: 54, 58
+  orig: 54, 58
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan3
+  rotate: false
+  xy: 138, 91
+  size: 41, 52
+  orig: 41, 52
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan4
+  rotate: false
+  xy: 166, 37
+  size: 41, 52
+  orig: 41, 52
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan5
+  rotate: false
+  xy: 185, 151
+  size: 36, 57
+  orig: 36, 57
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan6
+  rotate: false
+  xy: 124, 24
+  size: 40, 56
+  orig: 40, 56
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/pan7
+  rotate: false
+  xy: 181, 96
+  size: 38, 47
+  orig: 38, 47
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/sat0
+  rotate: false
+  xy: 2, 82
+  size: 134, 30
+  orig: 134, 30
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/sat1
+  rotate: false
+  xy: 222, 223
+  size: 32, 19
+  orig: 32, 19
+  offset: 0, 0
+  index: -1
+spaceStationExplosion/sat2
+  rotate: false
+  xy: 132, 210
+  size: 88, 32
+  orig: 88, 32
   offset: 0, 0
   index: -1

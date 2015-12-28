@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.gushikustudios.rube.loader.RubeSceneLoader;
 
 /**
  * Global variables accessible by all classes.
@@ -19,6 +20,8 @@ public class Global {
 
 	public static final String TEXTURE_ATLAS = "textures/textures.atlas";
 
+	public static final RubeSceneLoader rubeLoader = new RubeSceneLoader();
+	
 	public static final SpriteBatch batch = new SpriteBatch();
 	public static final ShapeRenderer shape = new ShapeRenderer();
 	

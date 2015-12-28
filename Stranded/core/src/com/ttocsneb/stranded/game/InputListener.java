@@ -20,6 +20,11 @@ public class InputListener implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		if(keycode == Keys.ESCAPE) {
 			game.back();
+		} else if(keycode == Keys.D) {
+			game.renderDebug = !game.renderDebug;
+		} else if(keycode == Keys.R) {
+			game.hide();
+			game.show();
 		}
 		return false;
 	}

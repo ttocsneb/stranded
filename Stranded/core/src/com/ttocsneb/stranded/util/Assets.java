@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -14,8 +13,6 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Disposable;
-import com.gushikustudios.rube.RubeScene;
-import com.gushikustudios.rube.loader.RubeSceneAsyncLoader;
 
 /**
  * Contains all of the assets for the game.
@@ -38,33 +35,11 @@ public class Assets implements Disposable, AssetErrorListener {
 	public AssetAtlas atlases;
 	public AssetSkin skins;
 	public AssetParticles particles;
-	public AssetRube rubes;
 
 	private static final String[] ATLASES = {
 		"skins/uiskin.atlas"
 	};
 
-	private static void loadRube(AssetManager am) {
-		am.setLoader(RubeScene.class, new RubeSceneAsyncLoader(new InternalFileHandleResolver()));
-		am.load("rube/testShip.json", RubeScene.class);
-	}
-	
-	public class AssetRube {
-		
-		public final AssetManager am;
-		
-		public static final String testScene = "rube/testShip.json";
-		
-		public AssetRube(AssetManager am) {
-			this.am = am;
-		}
-		
-		public RubeScene loadScene(String scene) {
-			return am.get(scene, RubeScene.class);
-		}
-		
-	}
-	
 	/**
 	 * Contains all Ui Skins.
 	 * 
@@ -76,8 +51,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final Skin skin;
 
 		public AssetSkin(AssetAtlas aa) {
-			skin = new Skin(Gdx.files.internal("skins/uiskin.json"),
-					aa.uiskin);
+			skin = new Skin(Gdx.files.internal("skins/uiskin.json"), aa.uiskin);
 		}
 
 	}
@@ -112,10 +86,57 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion spaceShip;
 		public final AtlasRegion background;
 
+		public final AtlasRegion asteroid;
+
+		public final AssetStation station;
+
 		public AssetTextures(TextureAtlas atlas) {
 
 			spaceShip = atlas.findRegion("tmpship");
 			background = atlas.findRegion("background");
+
+			asteroid = atlas.findRegion("spaceStationExplosion/Asteroid");
+
+			station = new AssetStation(atlas);
+
+		}
+
+		public class AssetStation {
+
+			public final AtlasRegion arm0;
+
+			public final AtlasRegion sat0;
+			public final AtlasRegion sat1;
+			public final AtlasRegion sat2;
+
+			public final AtlasRegion pan0;
+			public final AtlasRegion pan1;
+			public final AtlasRegion pan2;
+			public final AtlasRegion pan3;
+			public final AtlasRegion pan4;
+			public final AtlasRegion pan5;
+			public final AtlasRegion pan6;
+			public final AtlasRegion pan7;
+
+			/**
+			 * @param atlas
+			 */
+			public AssetStation(TextureAtlas atlas) {
+				arm0 = atlas.findRegion("spaceStationExplosion/arm0");
+
+				sat0 = atlas.findRegion("spaceStationExplosion/sat0");
+				sat1 = atlas.findRegion("spaceStationExplosion/sat1");
+				sat2 = atlas.findRegion("spaceStationExplosion/sat2");
+
+				pan0 = atlas.findRegion("spaceStationExplosion/pan0");
+				pan1 = atlas.findRegion("spaceStationExplosion/pan1");
+				pan2 = atlas.findRegion("spaceStationExplosion/pan2");
+				pan3 = atlas.findRegion("spaceStationExplosion/pan3");
+				pan4 = atlas.findRegion("spaceStationExplosion/pan4");
+				pan5 = atlas.findRegion("spaceStationExplosion/pan5");
+				pan6 = atlas.findRegion("spaceStationExplosion/pan6");
+				pan7 = atlas.findRegion("spaceStationExplosion/pan7");
+			}
 
 		}
 	}
@@ -168,33 +189,42 @@ public class Assets implements Disposable, AssetErrorListener {
 	 */
 	public class AssetFonts implements Disposable {
 
-		
-		 private static final String arial = "fonts/asenine.ttf";
-		 
-		 public final BitmapFont small; public final BitmapFont med; public
-		 final BitmapFont large; public final BitmapFont huge;
-		 
+		private static final String arial = "fonts/asenine.ttf";
+
+		public final BitmapFont small;
+		public final BitmapFont med;
+		public final BitmapFont large;
+		public final BitmapFont huge;
 
 		public AssetFonts() {
-			
-			 FreeTypeFontGenerator gen = new FreeTypeFontGenerator(Gdx.files.internal(arial));
-			 FreeTypeFontParameter par = new FreeTypeFontParameter();
-			 
-			 par.size = 32; small = gen.generateFont(par);
-			 
-			 par.size = 64; med = gen.generateFont(par);
-			 
-			 par.size = 128; large = gen.generateFont(par);
-			 
-			 par.size = 256; huge = gen.generateFont(par);
-			 
-			 gen.dispose();
-			 
-			 small.getRegion().getTexture() .setFilter(TextureFilter.Linear, TextureFilter.Linear);
-			 med.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-			 large.getRegion().getTexture() .setFilter(TextureFilter.Linear, TextureFilter.Linear);
-			 huge.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-			 
+
+			FreeTypeFontGenerator gen = new FreeTypeFontGenerator(
+					Gdx.files.internal(arial));
+			FreeTypeFontParameter par = new FreeTypeFontParameter();
+
+			par.size = 32;
+			small = gen.generateFont(par);
+
+			par.size = 64;
+			med = gen.generateFont(par);
+
+			par.size = 128;
+			large = gen.generateFont(par);
+
+			par.size = 256;
+			huge = gen.generateFont(par);
+
+			gen.dispose();
+
+			small.getRegion().getTexture()
+					.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			med.getRegion().getTexture()
+					.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			large.getRegion().getTexture()
+					.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			huge.getRegion().getTexture()
+					.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
 		}
 
 		@Override
@@ -225,8 +255,6 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 
 		loadSounds(assetManager);
-		
-		loadRube(assetManager);
 
 	}
 
@@ -275,7 +303,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
 		// enable texture filtering for pixel smoothing.
 		for (Texture t : atlas.getTextures()) {
-			t.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			t.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 		}
 
 		for (String s : ATLASES) {
@@ -291,7 +319,6 @@ public class Assets implements Disposable, AssetErrorListener {
 		textures = new AssetTextures(atlas);
 		particles = new AssetParticles(atlas);
 		atlases = new AssetAtlas(assetManager);
-		rubes = new AssetRube(assetManager);
 		skins = new AssetSkin(atlases);
 
 		fonts = new AssetFonts();

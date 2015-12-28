@@ -9,9 +9,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
 import com.ttocsneb.stranded.ashley.RubeRendererSystem;
 import com.ttocsneb.stranded.menu.MenuScreen;
-import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
-import com.ttocsneb.stranded.util.Assets.AssetRube;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
@@ -23,6 +21,8 @@ import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
  */
 public class GameScreen extends AbstractGameScreen {
 
+	boolean renderDebug = false;
+	
 	InputListener input;
 
 	RubeScene scene;
@@ -48,7 +48,7 @@ public class GameScreen extends AbstractGameScreen {
 
 		// Setup the Scene
 
-		scene = Assets.instance.rubes.loadScene(AssetRube.testScene);
+		scene = Global.rubeLoader.loadScene(Gdx.files.internal("rube/spaceStationExplosion.json"));
 
 		engine = new Engine();
 
@@ -77,6 +77,9 @@ public class GameScreen extends AbstractGameScreen {
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
+		
+		if(renderDebug)
+			debug.render(scene.getWorld(), cam.combined);
 	}
 
 	@Override
