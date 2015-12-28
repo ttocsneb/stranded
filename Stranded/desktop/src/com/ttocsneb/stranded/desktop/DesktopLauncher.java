@@ -32,7 +32,8 @@ public class DesktopLauncher {
 				// Go through the items of the texture folder
 				for (File file : new File(textureDir).listFiles()) {
 					// check if the file is a directory
-					if (file.isDirectory()) {
+					if (file.isDirectory()
+							&& !file.getName().equals("rawTextures")) {
 						// Pack the textures in the current directory
 						Settings settings = new Settings();
 						settings.maxWidth = 2048;
@@ -47,13 +48,18 @@ public class DesktopLauncher {
 				throw new FileNotFoundException(textureDir
 						+ " is not a real directory!");
 			}
+			
+			System.out.println("Done Exporting images!");
 
+		} else {
+
+			LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+			config.width = LwjglApplicationConfiguration
+					.getDesktopDisplayMode().width;
+			config.height = LwjglApplicationConfiguration
+					.getDesktopDisplayMode().height;
+			config.fullscreen = true;
+			new LwjglApplication(new Stranded(), config);
 		}
-
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width;
-		config.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height;
-		config.fullscreen = true;
-		new LwjglApplication(new Stranded(), config);
 	}
 }

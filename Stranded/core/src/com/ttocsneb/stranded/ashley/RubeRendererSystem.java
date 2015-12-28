@@ -155,10 +155,6 @@ public class RubeRendererSystem extends EntitySystem {
 						// Find the bottom left corner of the image.
 						pos.set(image.body.getPosition());
 
-						Gdx.app.debug("RubeRenderer", "Rot: "
-								+ MathUtils.radiansToDegrees
-								* image.angleInRads);
-
 						// If the offset of the image is not zero, do this vvv
 						if (!(image.center.x == 0 && image.center.y == 0)) {
 							// Get the angle from the offset.

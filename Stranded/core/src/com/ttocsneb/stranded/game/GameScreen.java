@@ -1,18 +1,16 @@
 package com.ttocsneb.stranded.game;
 
-import box2dLight.DirectionalLight;
-import box2dLight.RayHandler;
-
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
+import com.ttocsneb.stranded.ashley.BackgroundSystem;
 import com.ttocsneb.stranded.ashley.RubeRendererSystem;
 import com.ttocsneb.stranded.menu.MenuScreen;
+import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
@@ -26,7 +24,7 @@ import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
 public class GameScreen extends AbstractGameScreen {
 
 	boolean renderDebug = false;
-	
+
 	InputListener input;
 
 	RubeScene scene;
@@ -34,8 +32,6 @@ public class GameScreen extends AbstractGameScreen {
 	OrthographicCamera cam;
 
 	Box2DDebugRenderer debug;
-	
-	RayHandler light;
 
 	/**
 	 * @param game
@@ -54,26 +50,26 @@ public class GameScreen extends AbstractGameScreen {
 
 		// Setup the Scene
 
-		scene = Global.rubeLoader.loadScene(Gdx.files.internal("rube/spaceStationExplosion.json"));
+		scene = Global.rubeLoader.loadScene(Gdx.files
+				.internal("rube/spaceStationExplosion.json"));
 
 		engine = new Engine();
 
-		RubeRendererSystem renderer = new RubeRendererSystem(scene.getImages());
+		// Create a new background System REMEMBER to add this system first!
+		BackgroundSystem background = new BackgroundSystem(
+				Assets.instance.textures.background, true,
+				Assets.instance.textures.background.getRegionWidth() / 120,
+				Assets.instance.textures.background.getRegionHeight() / 120,
+				16, 9);
+		engine.addSystem(background);
 
+		RubeRendererSystem renderer = new RubeRendererSystem(scene.getImages());
 		engine.addSystem(renderer);
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 16, 9);
 
 		debug = new Box2DDebugRenderer();
-		
-		light = new RayHandler(scene.getWorld());
-		
-		light.setAmbientLight(0.1f);
-		
-		
-		@SuppressWarnings("unused")
-		DirectionalLight omnilight = new DirectionalLight(light, 512, new Color(1, 1, 1, 0.5f), 225);
 
 	}
 
@@ -91,12 +87,8 @@ public class GameScreen extends AbstractGameScreen {
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
-		
-		light.setCombinedMatrix(cam);
-		light.updateAndRender();
-		
-		if(renderDebug)
-			debug.render(scene.getWorld(), cam.combined);
+
+		if (renderDebug) debug.render(scene.getWorld(), cam.combined);
 	}
 
 	@Override
@@ -111,7 +103,7 @@ public class GameScreen extends AbstractGameScreen {
 
 	@Override
 	public void hide() {
-
+		
 	}
 
 	@Override

@@ -1352,7 +1352,7 @@
         "name" : "Asteroid",
         "position" : 
         {
-          "x" : 22.51401901245117,
+          "x" : 23.65991401672363,
           "y" : -21.18264770507813
         },
         "type" : "dynamic"
@@ -1761,37 +1761,20 @@
         "opacity" : 1,
         "renderOrder" : 5,
         "scale" : 2.176969766616821
-      },
-      
-      {
-        "aspectScale" : 1,
-        "center" : 
-        {
-          "x" : 8,
-          "y" : 4.5
-        },
-        "file" : "../raw/textures/background.png",
-        "filter" : 0,
-        "flip" : false,
-        "id" : 24,
-        "name" : "image12",
-        "opacity" : 1,
-        "renderOrder" : -1,
-        "scale" : 9
       }
     ],
     "metaobject" : 
     [
       
       {
-        "angle" : 3.141592741012573,
+        "angle" : 4.712388992309570,
         "file" : "C:/Users/Ben/Documents/GitHub/stranded/RUBE/ship.rube",
         "flip" : false,
         "id" : 4,
         "name" : "object0",
         "position" : 
         {
-          "x" : 9.445694923400879,
+          "x" : 8.967130661010742,
           "y" : 4.578472614288330
         },
         "scale" : 1

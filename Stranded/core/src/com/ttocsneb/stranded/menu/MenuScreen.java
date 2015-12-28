@@ -1,5 +1,6 @@
 package com.ttocsneb.stranded.menu;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,8 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.ttocsneb.stranded.ashley.BackgroundSystem;
 import com.ttocsneb.stranded.game.GameScreen;
 import com.ttocsneb.stranded.util.Assets;
+import com.ttocsneb.stranded.util.Global;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
@@ -27,6 +30,8 @@ public class MenuScreen extends AbstractGameScreen {
 
 	Stage stage;
 	
+	Engine engine;
+	
 
 	/**
 	 * @param game
@@ -41,6 +46,15 @@ public class MenuScreen extends AbstractGameScreen {
 	@Override
 	public void show() {
 		initStage();
+		
+		engine = new Engine();
+		
+		BackgroundSystem background = new BackgroundSystem(
+				Assets.instance.textures.background, true,
+				Assets.instance.textures.background.getRegionWidth() / 120,
+				Assets.instance.textures.background.getRegionHeight() / 120,
+				16, 9);
+		engine.addSystem(background);
 
 	}
 
@@ -77,6 +91,10 @@ public class MenuScreen extends AbstractGameScreen {
 				| GL20.GL_DEPTH_BUFFER_BIT
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
+		
+		Global.batch.begin();
+		engine.update(delta);
+		Global.batch.end();
 		
 		stage.act(delta);
 		stage.draw();
