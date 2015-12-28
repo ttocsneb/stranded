@@ -1,8 +1,12 @@
 package com.ttocsneb.stranded.game;
 
+import box2dLight.DirectionalLight;
+import box2dLight.RayHandler;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -30,6 +34,8 @@ public class GameScreen extends AbstractGameScreen {
 	OrthographicCamera cam;
 
 	Box2DDebugRenderer debug;
+	
+	RayHandler light;
 
 	/**
 	 * @param game
@@ -60,6 +66,14 @@ public class GameScreen extends AbstractGameScreen {
 		cam.setToOrtho(false, 16, 9);
 
 		debug = new Box2DDebugRenderer();
+		
+		light = new RayHandler(scene.getWorld());
+		
+		light.setAmbientLight(0.1f);
+		
+		
+		@SuppressWarnings("unused")
+		DirectionalLight omnilight = new DirectionalLight(light, 512, new Color(1, 1, 1, 0.5f), 225);
 
 	}
 
@@ -77,6 +91,9 @@ public class GameScreen extends AbstractGameScreen {
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
+		
+		light.setCombinedMatrix(cam);
+		light.updateAndRender();
 		
 		if(renderDebug)
 			debug.render(scene.getWorld(), cam.combined);
