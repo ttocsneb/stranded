@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.ttocsneb.stranded.ashley.BackgroundSystem;
+import com.ttocsneb.stranded.ashley.Background;
 import com.ttocsneb.stranded.game.GameScreen;
 import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
@@ -49,7 +49,7 @@ public class MenuScreen extends AbstractGameScreen {
 		
 		engine = new Engine();
 		
-		BackgroundSystem background = new BackgroundSystem(
+		Background background = new Background(
 				Assets.instance.textures.background, true,
 				Assets.instance.textures.background.getRegionWidth() / 120,
 				Assets.instance.textures.background.getRegionHeight() / 120,

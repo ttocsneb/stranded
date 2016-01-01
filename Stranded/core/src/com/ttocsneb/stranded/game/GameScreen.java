@@ -5,10 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
-import com.ttocsneb.stranded.ashley.BackgroundSystem;
-import com.ttocsneb.stranded.ashley.RubeRendererSystem;
+import com.ttocsneb.stranded.ashley.Background;
+import com.ttocsneb.stranded.ashley.RubeRenderer;
 import com.ttocsneb.stranded.menu.MenuScreen;
 import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
@@ -55,15 +56,15 @@ public class GameScreen extends AbstractGameScreen {
 
 		engine = new Engine();
 
-		// Create a new background System REMEMBER to add this system first!
-		BackgroundSystem background = new BackgroundSystem(
-				Assets.instance.textures.background, true,
-				Assets.instance.textures.background.getRegionWidth() / 120,
-				Assets.instance.textures.background.getRegionHeight() / 120,
-				16, 9);
-		engine.addSystem(background);
+		TextureRegion background = Assets.instance.textures.background;
+		Background back = new Background(background, true,
+				background.getRegionWidth() / 120,
+				background.getRegionHeight() / 120, 16, 9);
+		engine.addSystem(back);
+		
+		
+		RubeRenderer renderer = new RubeRenderer(scene.getImages());
 
-		RubeRendererSystem renderer = new RubeRendererSystem(scene.getImages());
 		engine.addSystem(renderer);
 
 		cam = new OrthographicCamera();
@@ -103,7 +104,7 @@ public class GameScreen extends AbstractGameScreen {
 
 	@Override
 	public void hide() {
-		
+
 	}
 
 	@Override

@@ -29,6 +29,75 @@ tmpship
   index: -1
 
 textures2.png
+size: 512,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+asteroids/asteroid0
+  rotate: false
+  xy: 2, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid1
+  rotate: false
+  xy: 57, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid2
+  rotate: false
+  xy: 112, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid3
+  rotate: false
+  xy: 167, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid4
+  rotate: false
+  xy: 222, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid5
+  rotate: false
+  xy: 277, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid6
+  rotate: false
+  xy: 332, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid7
+  rotate: false
+  xy: 387, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+asteroids/asteroid8
+  rotate: false
+  xy: 442, 2
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1
+
+textures3.png
 size: 128,64
 format: RGBA8888
 filter: Nearest,Nearest
@@ -41,7 +110,7 @@ SideView/ship
   offset: 0, 0
   index: -1
 
-textures3.png
+textures4.png
 size: 256,256
 format: RGBA8888
 filter: Nearest,Nearest
