@@ -86,7 +86,8 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion spaceShip;
 		public final AtlasRegion background;
 
-		public final AtlasRegion asteroid;
+		public final AssetAsteroid asteroid;
+		
 
 		public final AssetStation station;
 
@@ -95,10 +96,38 @@ public class Assets implements Disposable, AssetErrorListener {
 			spaceShip = atlas.findRegion("tmpship");
 			background = atlas.findRegion("background");
 
-			asteroid = atlas.findRegion("spaceStationExplosion/Asteroid");
+			asteroid = new AssetAsteroid(atlas);
 
 			station = new AssetStation(atlas);
 
+		}
+		
+		public class AssetAsteroid {
+			public final AtlasRegion asteroid;
+			
+			public final AtlasRegion ast0;
+			public final AtlasRegion ast1;
+			public final AtlasRegion ast2;
+			public final AtlasRegion ast3;
+			public final AtlasRegion ast4;
+			public final AtlasRegion ast5;
+			public final AtlasRegion ast6;
+			public final AtlasRegion ast7;
+			public final AtlasRegion ast8;
+			
+			public AssetAsteroid(TextureAtlas atlas) {
+				asteroid = atlas.findRegion("spaceStationExplosion/Asteroid");
+				
+				ast0 = atlas.findRegion("asteroids/asteroid0");
+				ast1 = atlas.findRegion("asteroids/asteroid1");
+				ast2 = atlas.findRegion("asteroids/asteroid2");
+				ast3 = atlas.findRegion("asteroids/asteroid3");
+				ast4 = atlas.findRegion("asteroids/asteroid4");
+				ast5 = atlas.findRegion("asteroids/asteroid5");
+				ast6 = atlas.findRegion("asteroids/asteroid6");
+				ast7 = atlas.findRegion("asteroids/asteroid7");
+				ast8 = atlas.findRegion("asteroids/asteroid8");
+			}
 		}
 
 		public class AssetStation {

@@ -1,6 +1,5 @@
 package com.ttocsneb.stranded.game;
 
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,9 +8,12 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
 import com.ttocsneb.stranded.ashley.BackgroundSystem;
 import com.ttocsneb.stranded.ashley.RubeRendererSystem;
+import com.ttocsneb.stranded.game.scene.AbstractGameScene;
+import com.ttocsneb.stranded.game.scene.ExplodingStationScene;
 import com.ttocsneb.stranded.menu.MenuScreen;
 import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
+import com.ttocsneb.stranded.util.scene.Scene;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
@@ -27,11 +29,17 @@ public class GameScreen extends AbstractGameScreen {
 
 	InputListener input;
 
-	RubeScene scene;
-	Engine engine;
+	Scene scene;
+
+	AbstractGameScene gameScene;
+
+	RubeScene rube;
 	OrthographicCamera cam;
 
+	RubeRendererSystem renderer;
+
 	Box2DDebugRenderer debug;
+	BackgroundSystem background;
 
 	/**
 	 * @param game
@@ -50,21 +58,16 @@ public class GameScreen extends AbstractGameScreen {
 
 		// Setup the Scene
 
-		scene = Global.rubeLoader.loadScene(Gdx.files
-				.internal("rube/spaceStationExplosion.json"));
-
-		engine = new Engine();
-
-		// Create a new background System REMEMBER to add this system first!
-		BackgroundSystem background = new BackgroundSystem(
-				Assets.instance.textures.background, true,
+		background = new BackgroundSystem(Assets.instance.textures.background,
+				true,
 				Assets.instance.textures.background.getRegionWidth() / 120,
 				Assets.instance.textures.background.getRegionHeight() / 120,
 				16, 9);
-		engine.addSystem(background);
 
-		RubeRendererSystem renderer = new RubeRendererSystem(scene.getImages());
-		engine.addSystem(renderer);
+		renderer = new RubeRendererSystem();
+
+		scene = new Scene();
+		scene.setScene(new ExplodingStationScene(scene));
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 16, 9);
@@ -80,15 +83,16 @@ public class GameScreen extends AbstractGameScreen {
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
 
-		scene.step();
-
 		cam.update();
 		Global.batch.setProjectionMatrix(cam.combined);
 		Global.batch.begin();
-		engine.update(delta);
+		background.update(delta);
+		scene.render(delta);
 		Global.batch.end();
 
-		if (renderDebug) debug.render(scene.getWorld(), cam.combined);
+		if (renderDebug)
+			debug.render(((AbstractGameScene) scene.getScene()).getScene()
+					.getWorld(), cam.combined);
 	}
 
 	@Override
@@ -103,7 +107,7 @@ public class GameScreen extends AbstractGameScreen {
 
 	@Override
 	public void hide() {
-		
+
 	}
 
 	@Override

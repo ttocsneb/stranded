@@ -74,10 +74,8 @@ public class ScreenTransitionPixelize implements ScreenTransition {
 		
 		batch.setShader(pix);
 		
-		batch.begin();
 		batch.setColor(1, 1, 1, 1);
 		batch.draw(tex, 0, 0, 0, 0, w, h, 1, 1, 0, 0, 0, tex.getWidth(), tex.getHeight(), false, true);
-		batch.end();
 		
 		batch.setShader(null);
 		

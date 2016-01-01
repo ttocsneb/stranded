@@ -71,7 +71,7 @@
         [
           
           {
-            "density" : 1,
+            "density" : 5,
             "friction" : 0.2,
             "id" : 2,
             "name" : "fixture0",
@@ -119,13 +119,13 @@
         ],
         "id" : 1,
         "linearVelocity" : 0,
-        "massData-I" : 0.007517679128795862,
+        "massData-I" : 0.03758839517831802,
         "massData-center" : 
         {
-          "x" : 0.002564263762906194,
-          "y" : -0.08991429954767227
+          "x" : 0.002564264228567481,
+          "y" : -0.08991430699825287
         },
-        "massData-mass" : 0.1604069471359253,
+        "massData-mass" : 0.8020346760749817,
         "name" : "body0",
         "position" : 0,
         "type" : "dynamic"

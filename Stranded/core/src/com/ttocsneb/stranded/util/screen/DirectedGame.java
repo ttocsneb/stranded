@@ -99,8 +99,10 @@ public abstract class DirectedGame implements ApplicationListener {
 				nextFbo.end();
 				// render transition effect to screen.
 				float alpha = t / duration;
+				batch.begin();
 				screenTransition.render(batch, currFbo.getColorBufferTexture(),
 						nextFbo.getColorBufferTexture(), alpha);
+				batch.end();
 			}
 		}
 	}

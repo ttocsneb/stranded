@@ -58,3 +58,13 @@ You can find this code in [`Stranded/core/src/com/ttocsneb/stranded/ashley/RubeR
 ### Dec 28 12:47 PM
 
 I have fixed the Gradle issues, where it was not possible to run the project through the command line.  Just remember to allways manage dependancies with gradle.  If you are having similar issues, you might be ignoring some important files. I was ignoring the Gradle Wrapper file: `gradle/wrapper/gradle-wrapper.jar`, and any 3rd party libraries you are using. *The libraries you manually include.*
+
+### Dec 31 2:29 PM
+
+I am currently setting up a system to hold multiple scenes.  It works almost the same as my DirectedGame System.  I made it so that you could controll these scenes from one parent class.  It also allows for smooth transitions between scenes.  The only problem I find with this system is that anything you want to transition must be in the scene you are transitioning to/from, which in hindsight is obvious.  I need to make a few changes to my test class but everything should work.
+
+### Jan 1 11:06 AM
+
+Happy New Year!
+
+I am having a few troubles with transitions between scenes, and I don't want to deal with it, I am just going to not have transitions between scenes, or at least not for now.
