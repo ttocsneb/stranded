@@ -6,13 +6,16 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
 import com.ttocsneb.stranded.ashley.Background;
 import com.ttocsneb.stranded.ashley.RubeRenderer;
+import com.ttocsneb.stranded.ashley.ShipController;
 import com.ttocsneb.stranded.menu.MenuScreen;
 import com.ttocsneb.stranded.util.Assets;
 import com.ttocsneb.stranded.util.Global;
+import com.ttocsneb.stranded.util.InputMultiplexer;
 import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
@@ -34,6 +37,10 @@ public class GameScreen extends AbstractGameScreen {
 
 	Box2DDebugRenderer debug;
 	
+	InputMultiplexer inputProcessor;
+	
+	ShipController ship;
+	
 	/**
 	 * @param game
 	 */
@@ -45,6 +52,8 @@ public class GameScreen extends AbstractGameScreen {
 	@Override
 	public void show() {
 		initStage();
+		
+		inputProcessor = new InputMultiplexer(input);
 	}
 
 	private void initStage() {
@@ -60,6 +69,9 @@ public class GameScreen extends AbstractGameScreen {
 				background.getRegionWidth() / 120,
 				background.getRegionHeight() / 120, 16, 9);
 		engine.addSystem(back);
+		
+		ship = new ShipController(scene.getNamed(Body.class, "ship").first());
+		engine.addSystem(ship);
 		
 		RubeRenderer renderer = new RubeRenderer(scene.getImages());
 		engine.addSystem(renderer);
@@ -107,7 +119,7 @@ public class GameScreen extends AbstractGameScreen {
 
 	@Override
 	public InputProcessor getInputProcessor() {
-		return input;
+		return inputProcessor;
 	}
 
 	void back() {

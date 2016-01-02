@@ -1400,7 +1400,7 @@
         "file" : "C:/Users/Ben/Documents/GitHub/stranded/RUBE/ship.rube",
         "flip" : false,
         "id" : 1,
-        "name" : "object0",
+        "name" : "ship",
         "position" : 
         {
           "x" : 5.227633476257324,

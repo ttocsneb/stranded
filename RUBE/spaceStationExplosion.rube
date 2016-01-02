@@ -1339,8 +1339,8 @@
         "id" : 24,
         "linearVelocity" : 
         {
-          "x" : -4.999998569488525,
-          "y" : 7.499988079071045
+          "x" : -4.469106197357178,
+          "y" : 7.226762771606445
         },
         "massData-I" : 20.32498550415039,
         "massData-center" : 
@@ -1771,7 +1771,7 @@
         "file" : "C:/Users/Ben/Documents/GitHub/stranded/RUBE/ship.rube",
         "flip" : false,
         "id" : 4,
-        "name" : "object0",
+        "name" : "ship",
         "position" : 
         {
           "x" : 8.967130661010742,

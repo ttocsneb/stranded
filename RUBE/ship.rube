@@ -126,7 +126,7 @@
           "y" : -0.08991430699825287
         },
         "massData-mass" : 0.8020346760749817,
-        "name" : "body0",
+        "name" : "ship",
         "position" : 0,
         "type" : "dynamic"
       }
