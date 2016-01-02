@@ -21,7 +21,7 @@ import com.ttocsneb.stranded.util.Global;
  *         Use this class to render a RubeScene.
  *
  */
-public class RubeRendererSystem extends EntitySystem {
+public class RubeRenderer extends EntitySystem {
 
 	private HashMap<Integer, Array<RubeImage>> images;
 
@@ -34,7 +34,7 @@ public class RubeRendererSystem extends EntitySystem {
 	 * @param images
 	 *            The Images from the RubeScene.
 	 */
-	public RubeRendererSystem(Array<RubeImage> images) {
+	public RubeRenderer(Array<RubeImage> images) {
 		if (!loaded) load();
 
 		this.images = new HashMap<Integer, Array<RubeImage>>();
@@ -60,7 +60,7 @@ public class RubeRendererSystem extends EntitySystem {
 	/**
 	 * Create a new RubeRendererSystem, without any images to render.
 	 */
-	public RubeRendererSystem() {
+	public RubeRenderer() {
 		this(null);
 	}
 

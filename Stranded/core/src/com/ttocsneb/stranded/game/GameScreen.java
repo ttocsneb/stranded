@@ -25,7 +25,7 @@ import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
 public class GameScreen extends AbstractGameScreen {
 
 	boolean renderDebug = false;
-
+	
 	InputListener input;
 
 	RubeScene scene;
@@ -33,7 +33,7 @@ public class GameScreen extends AbstractGameScreen {
 	OrthographicCamera cam;
 
 	Box2DDebugRenderer debug;
-
+	
 	/**
 	 * @param game
 	 */
@@ -51,8 +51,7 @@ public class GameScreen extends AbstractGameScreen {
 
 		// Setup the Scene
 
-		scene = Global.rubeLoader.loadScene(Gdx.files
-				.internal("rube/spaceStationExplosion.json"));
+		scene = Global.rubeLoader.loadScene(Gdx.files.internal("rube/spaceStationExplosion.json"));
 
 		engine = new Engine();
 
@@ -62,16 +61,14 @@ public class GameScreen extends AbstractGameScreen {
 				background.getRegionHeight() / 120, 16, 9);
 		engine.addSystem(back);
 		
-		
 		RubeRenderer renderer = new RubeRenderer(scene.getImages());
-
 		engine.addSystem(renderer);
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 16, 9);
 
 		debug = new Box2DDebugRenderer();
-
+		
 	}
 
 	@Override
@@ -88,8 +85,9 @@ public class GameScreen extends AbstractGameScreen {
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
-
-		if (renderDebug) debug.render(scene.getWorld(), cam.combined);
+		
+		if(renderDebug)
+			debug.render(scene.getWorld(), cam.combined);
 	}
 
 	@Override

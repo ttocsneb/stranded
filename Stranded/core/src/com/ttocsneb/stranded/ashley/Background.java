@@ -9,7 +9,7 @@ import com.ttocsneb.stranded.util.Global;
  * @author TtocsNeb
  *
  */
-public class BackgroundSystem extends EntitySystem {
+public class Background extends EntitySystem {
 
 	private TextureRegion background;
 
@@ -27,7 +27,7 @@ public class BackgroundSystem extends EntitySystem {
 	 * @param height
 	 *            of the screen
 	 */
-	public BackgroundSystem(TextureRegion background, float width, float height) {
+	public Background(TextureRegion background, float width, float height) {
 		setTexture(background, false, 0, 0, width, height);
 	}
 
@@ -48,7 +48,7 @@ public class BackgroundSystem extends EntitySystem {
 	 * @param height
 	 *            of the screen
 	 */
-	public BackgroundSystem(TextureRegion background, boolean seamless,
+	public Background(TextureRegion background, boolean seamless,
 			float imageWidth, float imageHeight, float width, float height) {
 		setTexture(background, seamless, imageWidth, imageHeight, width, height);
 	}
