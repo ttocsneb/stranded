@@ -58,18 +58,18 @@ public class ShipController extends EntitySystem {
 	 * @param rotation
 	 *            offset in radians
 	 */
-	private void setData(PooledEffect effect, float distance, float rotation) {
+	private void setData(PooledEffect effect, float distance, float rotation, float delta) {
 		float angle = ship.getAngle() + rotation;
 
 		effect.setPosition(
 				ship.getPosition().x
 						+ distance
 						* MathUtils
-								.sin((float) (2 * Math.PI - angle + 0.5f * Math.PI)),
+								.sin((float) (2 * Math.PI - angle + 0.5f * Math.PI)) + ship.getLinearVelocity().x*delta,
 				ship.getPosition().y
 						+ distance
 						* MathUtils
-								.cos((float) (2 * Math.PI - angle + 0.5f * Math.PI)));
+								.cos((float) (2 * Math.PI - angle + 0.5f * Math.PI)) + ship.getLinearVelocity().y*delta);
 
 		effect.getEmitters().get(0).getAngle()
 				.setHighMin(angle * MathUtils.radiansToDegrees - 15);
@@ -77,6 +77,9 @@ public class ShipController extends EntitySystem {
 				.setHighMax(angle * MathUtils.radiansToDegrees + 15);
 		effect.getEmitters().get(0).getAngle()
 				.setLow(angle * MathUtils.radiansToDegrees);
+		
+		effect.getEmitters().get(0).getWind().setHigh(ship.getLinearVelocity().x);
+		effect.getEmitters().get(0).getGravity().setHigh(ship.getLinearVelocity().y);
 	}
 
 	@Override
@@ -86,7 +89,7 @@ public class ShipController extends EntitySystem {
 		if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
 			// Move the ship forwards if the up arrow/W key is pressed
 
-			setData(thruster, 0.25f, (float) (1.5f * Math.PI));
+			setData(thruster, 0.25f, (float) (1.5f * Math.PI), delta);
 
 			if (!thrustActivated) {
 				particles.addEffect(thruster);
@@ -112,7 +115,7 @@ public class ShipController extends EntitySystem {
 		// Turn the ship
 		if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
 
-			setData(turn, 0.141f, (float) (0.25f * Math.PI));
+			setData(turn, 0.141f, (float) (0.25f * Math.PI), delta);
 
 			if (!turnActivated) {
 				particles.addEffect(turn);
@@ -124,7 +127,7 @@ public class ShipController extends EntitySystem {
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)
 				|| Gdx.input.isKeyPressed(Keys.D)) {
 
-			setData(turn, 0.141f, (float) (0.75f * Math.PI));
+			setData(turn, 0.141f, (float) (0.75f * Math.PI), delta);
 
 			if (!turnActivated) {
 				particles.addEffect(turn);
@@ -143,7 +146,8 @@ public class ShipController extends EntitySystem {
 
 				setData(turn,
 						0.141f,
-						(float) ((ship.getAngularVelocity() > 0 ? 0.75f : 0.25f) * Math.PI));
+						(float) ((ship.getAngularVelocity() > 0 ? 0.75f : 0.25f) * Math.PI),
+						delta);
 
 				if (!turnActivated) {
 					particles.addEffect(turn);

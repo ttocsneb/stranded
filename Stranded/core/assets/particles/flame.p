@@ -114,7 +114,16 @@ scaling0: 1.0
 timelineCount: 1
 timeline0: 0.0
 - Gravity - 
-active: false
+active: true
+lowMin: 0.0
+lowMax: 0.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
 - Tint - 
 colorsCount: 3
 colors0: 1.0
@@ -146,4 +155,4 @@ additive: true
 behind: false
 premultipliedAlpha: false
 - Image Path -
-C:\Users\Ben\Documents\GitHub\stranded\raw\particle.png
+C:\Users\Ben\Documents\GitHub\stranded\raw\textures\particle.png
