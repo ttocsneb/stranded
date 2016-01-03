@@ -5,7 +5,7 @@
     "names" : 
     [
       "bitplane1",
-      "bitplane2",
+      "Ship",
       "bitplane3",
       "bitplane4",
       "bitplane5",
@@ -72,6 +72,7 @@
           
           {
             "density" : 5,
+            "filter-categoryBits" : 2,
             "friction" : 0.2,
             "id" : 2,
             "name" : "fixture0",

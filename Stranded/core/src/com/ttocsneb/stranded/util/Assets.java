@@ -7,6 +7,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -87,7 +89,6 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion background;
 
 		public final AssetAsteroid asteroid;
-		
 
 		public final AssetStation station;
 
@@ -101,10 +102,11 @@ public class Assets implements Disposable, AssetErrorListener {
 			station = new AssetStation(atlas);
 
 		}
-		
+
 		public class AssetAsteroid {
+
 			public final AtlasRegion asteroid;
-			
+
 			public final AtlasRegion ast0;
 			public final AtlasRegion ast1;
 			public final AtlasRegion ast2;
@@ -114,10 +116,10 @@ public class Assets implements Disposable, AssetErrorListener {
 			public final AtlasRegion ast6;
 			public final AtlasRegion ast7;
 			public final AtlasRegion ast8;
-			
+
 			public AssetAsteroid(TextureAtlas atlas) {
 				asteroid = atlas.findRegion("spaceStationExplosion/Asteroid");
-				
+
 				ast0 = atlas.findRegion("asteroids/asteroid0");
 				ast1 = atlas.findRegion("asteroids/asteroid1");
 				ast2 = atlas.findRegion("asteroids/asteroid2");
@@ -178,13 +180,16 @@ public class Assets implements Disposable, AssetErrorListener {
 	 */
 	public class AssetParticles {
 
-		// public final ParticleEffect triangleExp;
+		private final ParticleEffect fireeffect;
+		
+		public final ParticleEffectPool fire;
 
 		public AssetParticles(TextureAtlas atlas) {
-			// triangleExp = new ParticleEffect();
-			// triangleExp.load(Gdx.files.internal("particles/explosionTriangle.p"),
-			// atlas);
+			fireeffect = new ParticleEffect();
+			fireeffect.load(Gdx.files.internal("particles/flame.p"), atlas);
 
+			fire = new ParticleEffectPool(fireeffect, 4, 16);
+			
 		}
 	}
 

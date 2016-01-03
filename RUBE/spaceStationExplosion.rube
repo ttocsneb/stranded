@@ -4,8 +4,8 @@
   {
     "names" : 
     [
-      "f",
-      "bitplane2",
+      "Main",
+      "Ship",
       "bitplane3",
       "bitplane4",
       "bitplane5",
@@ -63,6 +63,41 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "filter-maskBits" : 65534,
+            "friction" : 0.2,
+            "id" : 1,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "line"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0, 16.0, 16.0, 0.0, 0.0 ],
+              "y" : [ 0.0, 0.0, 9, 9, 0.005100000184029341 ]
+            }
+          }
+        ],
+        "id" : 1,
+        "linearVelocity" : 0,
+        "name" : "body0",
+        "position" : 0,
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -120,6 +155,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -177,6 +213,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -232,6 +269,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -287,6 +325,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -348,6 +387,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -409,6 +449,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -468,6 +509,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -527,6 +569,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -582,6 +625,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -637,6 +681,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -700,6 +745,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -767,6 +813,7 @@
       {
         "angle" : 3.141592741012573,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -822,6 +869,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -883,6 +931,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -944,6 +993,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1003,6 +1053,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1062,6 +1113,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1119,6 +1171,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1176,6 +1229,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1231,6 +1285,7 @@
       {
         "angle" : 0,
         "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -1293,8 +1348,6 @@
           
           {
             "density" : 85.69181823730469,
-            "filter-categoryBits" : 2,
-            "filter-maskBits" : 65533,
             "friction" : 0.2,
             "id" : 24,
             "name" : "fixture13",
@@ -1339,8 +1392,8 @@
         "id" : 24,
         "linearVelocity" : 
         {
-          "x" : -4.469106197357178,
-          "y" : 7.226762771606445
+          "x" : -4.469115734100342,
+          "y" : 7.226791381835938
         },
         "massData-I" : 20.32498550415039,
         "massData-center" : 

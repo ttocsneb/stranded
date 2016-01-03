@@ -65,11 +65,15 @@ public abstract class DirectedGame implements ApplicationListener {
 		else if(currScreen != null)
 			currScreen.resize(width, height);
 	}
+	
+	private float averageDelta = 1/60f;
 
 	@Override
 	public void render() {
-		// get delta time and ensure an upper limit of one 60th second.
-		float delta = Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f);
+		// get delta time and ensure an upper limit of one 30th second.
+		averageDelta = (averageDelta + Gdx.graphics.getDeltaTime())/2f;
+		float delta = Math.min(averageDelta, 1 / 30f);
+		
 		if (nextScreen == null) {
 			// no ongoing transition
 			if (currScreen != null) currScreen.render(delta);

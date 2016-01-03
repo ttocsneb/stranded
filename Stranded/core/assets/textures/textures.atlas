@@ -6,23 +6,30 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 2, 112
+  xy: 2, 130
   size: 1024, 1024
   orig: 1024, 1024
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 2, 2
+  xy: 2, 20
   size: 109, 108
   split: 16, 85, 16, 47
   pad: 15, 15, 18, 15
   orig: 109, 108
   offset: 0, 0
   index: -1
+particle
+  rotate: false
+  xy: 2, 2
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 tmpship
   rotate: false
-  xy: 1028, 1105
+  xy: 1028, 1123
   size: 45, 31
   orig: 45, 31
   offset: 0, 0

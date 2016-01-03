@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
 import com.ttocsneb.stranded.ashley.Background;
+import com.ttocsneb.stranded.ashley.Particles;
 import com.ttocsneb.stranded.ashley.RubeRenderer;
 import com.ttocsneb.stranded.ashley.ShipController;
 import com.ttocsneb.stranded.menu.MenuScreen;
@@ -41,6 +42,8 @@ public class GameScreen extends AbstractGameScreen {
 	
 	ShipController ship;
 	
+	private Particles particles;
+	
 	/**
 	 * @param game
 	 */
@@ -69,12 +72,16 @@ public class GameScreen extends AbstractGameScreen {
 				background.getRegionWidth() / 120,
 				background.getRegionHeight() / 120, 16, 9);
 		engine.addSystem(back);
+
+		particles = new Particles();
+		engine.addSystem(particles);
 		
-		ship = new ShipController(scene.getNamed(Body.class, "ship").first());
+		ship = new ShipController(scene.getNamed(Body.class, "ship").first(), particles);
 		engine.addSystem(ship);
 		
 		RubeRenderer renderer = new RubeRenderer(scene.getImages());
 		engine.addSystem(renderer);
+		
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 16, 9);
@@ -85,12 +92,13 @@ public class GameScreen extends AbstractGameScreen {
 
 	@Override
 	public void render(float delta) {
+		
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT
 				| GL20.GL_DEPTH_BUFFER_BIT
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
 
-		scene.step();
+		scene.getWorld().step(delta, scene.velocityIterations, scene.positionIterations);
 
 		cam.update();
 		Global.batch.setProjectionMatrix(cam.combined);
