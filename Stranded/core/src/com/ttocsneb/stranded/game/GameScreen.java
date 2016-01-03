@@ -3,6 +3,7 @@ package com.ttocsneb.stranded.game;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.gushikustudios.rube.RubeScene;
 import com.ttocsneb.stranded.ashley.Background;
+import com.ttocsneb.stranded.ashley.CameraController;
 import com.ttocsneb.stranded.ashley.Particles;
 import com.ttocsneb.stranded.ashley.RubeRenderer;
 import com.ttocsneb.stranded.ashley.ShipController;
@@ -42,6 +44,8 @@ public class GameScreen extends AbstractGameScreen {
 	
 	ShipController ship;
 	
+	CameraController camera;
+	
 	private Particles particles;
 	
 	/**
@@ -49,14 +53,22 @@ public class GameScreen extends AbstractGameScreen {
 	 */
 	public GameScreen(DirectedGame game) {
 		super(game);
-		input = new InputListener(this);
 	}
 
 	@Override
 	public void show() {
+		input = new InputListener(this);
+
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, 16, 9);
+		
 		initStage();
 		
 		inputProcessor = new InputMultiplexer(input);
+		
+		camera = new CameraController(cam);
+		camera.speed = 0.5f;
+		camera.setZoom(0.1f);
 	}
 
 	private void initStage() {
@@ -68,9 +80,9 @@ public class GameScreen extends AbstractGameScreen {
 		engine = new Engine();
 
 		TextureRegion background = Assets.instance.textures.background;
-		Background back = new Background(background, true,
+		Background back = new Background(cam, background, true,
 				background.getRegionWidth() / 120,
-				background.getRegionHeight() / 120, 16, 9);
+				background.getRegionHeight() / 120);
 		engine.addSystem(back);
 
 		particles = new Particles();
@@ -83,8 +95,6 @@ public class GameScreen extends AbstractGameScreen {
 		engine.addSystem(renderer);
 		
 
-		cam = new OrthographicCamera();
-		cam.setToOrtho(false, 16, 9);
 
 		debug = new Box2DDebugRenderer();
 		
@@ -100,11 +110,15 @@ public class GameScreen extends AbstractGameScreen {
 
 		scene.getWorld().step(delta, scene.velocityIterations, scene.positionIterations);
 
-		cam.update();
+		camera.moveTo(ship.ship.getPosition());
+		
+		camera.update(delta);
 		Global.batch.setProjectionMatrix(cam.combined);
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
+
+		camera.zoomTo(Math.max(1, ship.ship.getPosition().dst(cam.position.x, cam.position.y)/4));
 		
 		if(renderDebug)
 			debug.render(scene.getWorld(), cam.combined);

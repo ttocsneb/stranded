@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -16,7 +15,7 @@ import com.ttocsneb.stranded.util.Assets;
  */
 public class ShipController extends EntitySystem {
 
-	private Body ship;
+	public Body ship;
 
 	private float acceleration = 5;
 	private float angularAcceleration = 0.5f;

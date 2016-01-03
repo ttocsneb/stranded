@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -49,11 +50,10 @@ public class MenuScreen extends AbstractGameScreen {
 		
 		engine = new Engine();
 		
-		Background background = new Background(
+		Background background = new Background((OrthographicCamera)stage.getCamera(),
 				Assets.instance.textures.background, true,
-				Assets.instance.textures.background.getRegionWidth() / 120,
-				Assets.instance.textures.background.getRegionHeight() / 120,
-				16, 9);
+				Assets.instance.textures.background.getRegionWidth(),
+				Assets.instance.textures.background.getRegionHeight());
 		engine.addSystem(background);
 
 	}
@@ -92,6 +92,7 @@ public class MenuScreen extends AbstractGameScreen {
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
 		
+		Global.batch.setProjectionMatrix(stage.getCamera().combined);
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();

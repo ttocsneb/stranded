@@ -68,40 +68,6 @@
         [
           
           {
-            "density" : 1,
-            "filter-maskBits" : 65534,
-            "friction" : 0.2,
-            "id" : 1,
-            "name" : "fixture0",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 0.0, 16.0, 16.0, 0.0, 0.0 ],
-              "y" : [ 0.0, 0.0, 9, 9, 0.005100000184029341 ]
-            }
-          }
-        ],
-        "id" : 1,
-        "linearVelocity" : 0,
-        "name" : "body0",
-        "position" : 0,
-        "type" : "static"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
             "density" : 0.1,
             "friction" : 0.2,
             "id" : 3,
