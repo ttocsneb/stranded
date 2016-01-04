@@ -1,9 +1,10 @@
 package com.ttocsneb.stranded.game;
 
+import box2dLight.RayHandler;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -23,6 +24,7 @@ import com.ttocsneb.stranded.util.screen.AbstractGameScreen;
 import com.ttocsneb.stranded.util.screen.DirectedGame;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransition;
 import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
+import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionPixelize;
 
 /**
  * @author TtocsNeb
@@ -31,7 +33,7 @@ import com.ttocsneb.stranded.util.screen.transitions.ScreenTransitionFade;
 public class GameScreen extends AbstractGameScreen {
 
 	boolean renderDebug = false;
-	
+
 	InputListener input;
 
 	RubeScene scene;
@@ -39,15 +41,17 @@ public class GameScreen extends AbstractGameScreen {
 	OrthographicCamera cam;
 
 	Box2DDebugRenderer debug;
-	
+
 	InputMultiplexer inputProcessor;
-	
+
 	ShipController ship;
-	
+
 	CameraController camera;
-	
+
 	private Particles particles;
-	
+
+	RayHandler lightSystem;
+
 	/**
 	 * @param game
 	 */
@@ -61,11 +65,11 @@ public class GameScreen extends AbstractGameScreen {
 
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 16, 9);
-		
+
 		initStage();
-		
+
 		inputProcessor = new InputMultiplexer(input);
-		
+
 		camera = new CameraController(cam);
 		camera.speed = 0.5f;
 		camera.setZoom(0.1f);
@@ -75,53 +79,62 @@ public class GameScreen extends AbstractGameScreen {
 
 		// Setup the Scene
 
-		scene = Global.rubeLoader.loadScene(Gdx.files.internal("rube/spaceStationExplosion.json"));
+		scene = Global.rubeLoader.loadScene(Gdx.files
+				.internal("rube/testShip.json"));
+
+		lightSystem = new RayHandler(scene.getWorld(), Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		lightSystem.setAmbientLight(0);
+		lightSystem.setBlurNum(1);
 
 		engine = new Engine();
 
 		TextureRegion background = Assets.instance.textures.background;
 		Background back = new Background(cam, background, true,
-				background.getRegionWidth() / 120,
-				background.getRegionHeight() / 120);
+				background.getRegionWidth() / 60,
+				background.getRegionHeight() / 60);
 		engine.addSystem(back);
 
 		particles = new Particles();
 		engine.addSystem(particles);
-		
-		ship = new ShipController(scene.getNamed(Body.class, "ship").first(), particles);
+
+		ship = new ShipController(scene.getNamed(Body.class, "ship").first(),
+				lightSystem, particles);
 		engine.addSystem(ship);
-		
+
 		RubeRenderer renderer = new RubeRenderer(scene.getImages());
 		engine.addSystem(renderer);
-		
-
 
 		debug = new Box2DDebugRenderer();
-		
+
 	}
 
 	@Override
 	public void render(float delta) {
-		
+
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT
 				| GL20.GL_DEPTH_BUFFER_BIT
 				| (Gdx.graphics.getBufferFormat().coverageSampling ? GL20.GL_COVERAGE_BUFFER_BIT_NV
 						: 0));
 
-		scene.getWorld().step(delta, scene.velocityIterations, scene.positionIterations);
+		scene.getWorld().step(delta, scene.velocityIterations,
+				scene.positionIterations);
 
 		camera.moveTo(ship.ship.getPosition());
-		
+
 		camera.update(delta);
 		Global.batch.setProjectionMatrix(cam.combined);
 		Global.batch.begin();
 		engine.update(delta);
 		Global.batch.end();
+		lightSystem.setCombinedMatrix(cam);
+		lightSystem.updateAndRender();
 
-		camera.zoomTo(Math.max(1, ship.ship.getPosition().dst(cam.position.x, cam.position.y)/4));
-		
-		if(renderDebug)
-			debug.render(scene.getWorld(), cam.combined);
+		camera.zoomTo(Math
+				.max(1,
+						ship.ship.getPosition().dst(cam.position.x,
+								cam.position.y) / 4));
+
+		if (renderDebug) debug.render(scene.getWorld(), cam.combined);
 	}
 
 	@Override
@@ -148,6 +161,13 @@ public class GameScreen extends AbstractGameScreen {
 		Gdx.app.debug("GameScreen;back", "Swithing to MenuScreen");
 		ScreenTransition transition = ScreenTransitionFade.init(1);
 		game.setScreen(new MenuScreen(game), transition);
+	}
+
+	/**
+	 * 
+	 */
+	public void reload() {
+		game.setScreen(new GameScreen(game), ScreenTransitionPixelize.init(1));
 	}
 
 }

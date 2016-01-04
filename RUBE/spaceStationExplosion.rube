@@ -1,5 +1,6 @@
 
 {
+  "activeScript" : "\t\t\t\t\t\tb",
   "collisionbitplanes" : 
   {
     "names" : 
@@ -1780,6 +1781,137 @@
         "opacity" : 1,
         "renderOrder" : 5,
         "scale" : 2.176969766616821
+      }
+    ],
+    "metajoint" : 
+    [
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 0,
+        "bodyA" : 23,
+        "bodyB" : 22,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 1,
+        "length" : 1.042844176292419,
+        "name" : "joint0",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 0,
+        "bodyA" : 16,
+        "bodyB" : 17,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 2,
+        "length" : 0.9184254407882690,
+        "name" : "joint1",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 0,
+        "bodyA" : 19,
+        "bodyB" : 18,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 3,
+        "length" : 0.9157313704490662,
+        "name" : "joint2",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 0,
+        "bodyA" : 21,
+        "bodyB" : 20,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 4,
+        "length" : 0.9479104876518250,
+        "name" : "joint3",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : -0.01680281758308411,
+          "y" : -0.3394103050231934
+        },
+        "bodyA" : 21,
+        "bodyB" : 15,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 5,
+        "length" : 0.6447240710258484,
+        "name" : "joint4",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : -0.01376819983124733,
+          "y" : -0.3421640098094940
+        },
+        "bodyA" : 19,
+        "bodyB" : 15,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 6,
+        "length" : 0.6501439809799194,
+        "name" : "joint5",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : -0.01471900008618832,
+          "y" : 0.4815700054168701
+        },
+        "bodyA" : 16,
+        "bodyB" : 15,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 7,
+        "length" : 0.6348239779472351,
+        "name" : "joint6",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : -0.01471900008618832,
+          "y" : 0.4815700054168701
+        },
+        "bodyA" : 22,
+        "bodyB" : 15,
+        "collideConnected" : true,
+        "dampingRatio" : 5,
+        "frequency" : 1,
+        "id" : 8,
+        "length" : 0.5508310198783875,
+        "name" : "joint7",
+        "type" : "distance"
       }
     ],
     "metaobject" : 

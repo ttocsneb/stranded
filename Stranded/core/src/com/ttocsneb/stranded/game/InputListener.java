@@ -23,8 +23,7 @@ public class InputListener implements InputProcessor {
 		} else if(keycode == Keys.E) {
 			game.renderDebug = !game.renderDebug;
 		} else if(keycode == Keys.R) {
-			game.hide();
-			game.show();
+			game.reload();
 		}
 		return false;
 	}

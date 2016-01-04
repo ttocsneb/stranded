@@ -11,7 +11,10 @@ public class ScreenTransitionPixelize implements ScreenTransition {
 	private static final ScreenTransitionPixelize instance = new ScreenTransitionPixelize();
 	
 	private ScreenTransitionPixelize() {
+		ShaderProgram.pedantic = false;
 		pix = new ShaderProgram(Gdx.files.internal("shaders/pix.vert"), Gdx.files.internal("shaders/pix.frag"));
+		
+		if(pix.getLog().length() > 0) Gdx.app.error("ScreenTransitionPixelize", pix.getLog());
 	}
 	
 	private float duration;

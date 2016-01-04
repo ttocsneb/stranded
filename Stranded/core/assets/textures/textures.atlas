@@ -1,14 +1,14 @@
 
 textures.png
-size: 2048,2048
+size: 512,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
   xy: 2, 130
-  size: 1024, 1024
-  orig: 1024, 1024
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: -1
 button
@@ -29,7 +29,7 @@ particle
   index: -1
 tmpship
   rotate: false
-  xy: 1028, 1123
+  xy: 260, 355
   size: 45, 31
   orig: 45, 31
   offset: 0, 0

@@ -1,9 +1,13 @@
 package com.ttocsneb.stranded.ashley;
 
+import box2dLight.PointLight;
+import box2dLight.RayHandler;
+
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -28,9 +32,10 @@ public class ShipController extends EntitySystem {
 	private boolean thrustActivated;
 	private boolean turnActivated;
 
-	public ShipController(Body ship, Particles particles) {
-		this.ship = ship;
+	private PointLight burn;
 
+	public ShipController(Body ship, RayHandler lightSystem, Particles particles) {
+		this.ship = ship;
 		this.particles = particles;
 
 		thruster = Assets.instance.particles.fire.obtain();// Obtain that fire!
@@ -40,8 +45,17 @@ public class ShipController extends EntitySystem {
 		turn = Assets.instance.particles.fire.obtain();
 		turnActivated = false;
 		turn.scaleEffect(0.141f);
-		turn.getEmitters().get(0).getTint().setColors(new float[] {1, 1, 1, 0.5f});
+		turn.getEmitters().get(0).getTint().setColors(new float[] {
+				1, 1, 1, 0.5f
+		});
 
+		burn = new PointLight(lightSystem, 512);
+		burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+		burn.attachToBody(ship, 0, -0.3f);
+		burn.setDistance(3);
+
+		new PointLight(lightSystem, 512, new Color(1, 1, 1, 0.5f), 5, 0, 0).attachToBody(ship, 0, 0.25f);
+		
 	}
 
 	@Override
@@ -58,18 +72,21 @@ public class ShipController extends EntitySystem {
 	 * @param rotation
 	 *            offset in radians
 	 */
-	private void setData(PooledEffect effect, float distance, float rotation, float delta) {
+	private void setData(PooledEffect effect, float distance, float rotation,
+			float delta) {
 		float angle = ship.getAngle() + rotation;
 
 		effect.setPosition(
 				ship.getPosition().x
 						+ distance
 						* MathUtils
-								.sin((float) (2 * Math.PI - angle + 0.5f * Math.PI)) + ship.getLinearVelocity().x*delta,
+								.sin((float) (2 * Math.PI - angle + 0.5f * Math.PI))
+						+ ship.getLinearVelocity().x * delta,
 				ship.getPosition().y
 						+ distance
 						* MathUtils
-								.cos((float) (2 * Math.PI - angle + 0.5f * Math.PI)) + ship.getLinearVelocity().y*delta);
+								.cos((float) (2 * Math.PI - angle + 0.5f * Math.PI))
+						+ ship.getLinearVelocity().y * delta);
 
 		effect.getEmitters().get(0).getAngle()
 				.setHighMin(angle * MathUtils.radiansToDegrees - 15);
@@ -77,9 +94,11 @@ public class ShipController extends EntitySystem {
 				.setHighMax(angle * MathUtils.radiansToDegrees + 15);
 		effect.getEmitters().get(0).getAngle()
 				.setLow(angle * MathUtils.radiansToDegrees);
-		
-		effect.getEmitters().get(0).getWind().setHigh(ship.getLinearVelocity().x);
-		effect.getEmitters().get(0).getGravity().setHigh(ship.getLinearVelocity().y);
+
+		effect.getEmitters().get(0).getWind()
+				.setHigh(ship.getLinearVelocity().x);
+		effect.getEmitters().get(0).getGravity()
+				.setHigh(ship.getLinearVelocity().y);
 	}
 
 	@Override
@@ -89,11 +108,14 @@ public class ShipController extends EntitySystem {
 		if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
 			// Move the ship forwards if the up arrow/W key is pressed
 
+
 			setData(thruster, 0.25f, (float) (1.5f * Math.PI), delta);
 
 			if (!thrustActivated) {
 				particles.addEffect(thruster);
 				thrustActivated = true;
+				burn.setActive(true);
+				burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
 			}
 
 			ship.applyForceToCenter(
@@ -111,6 +133,12 @@ public class ShipController extends EntitySystem {
 			thruster = Assets.instance.particles.fire.obtain();
 			thruster.scaleEffect(0.25f);
 			thrustActivated = false;
+			
+			if(burn.getColor().a <= 0) {
+				burn.setActive(false);
+			} else {
+				burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, burn.getColor().a - delta));
+			}
 		}
 		// Turn the ship
 		if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
@@ -155,12 +183,14 @@ public class ShipController extends EntitySystem {
 				}
 			} else {
 				ship.setAngularVelocity(0);
-				
+
 				turn.allowCompletion();
 				turn = Assets.instance.particles.fire.obtain();
 				turn.scaleEffect(0.1414f);
 				turnActivated = false;
-				turn.getEmitters().get(0).getTint().setColors(new float[] {1, 1, 1, 0.5f});
+				turn.getEmitters().get(0).getTint().setColors(new float[] {
+						1, 1, 1, 0.5f
+				});
 			}
 
 		} else {
@@ -168,7 +198,9 @@ public class ShipController extends EntitySystem {
 			turn = Assets.instance.particles.fire.obtain();
 			turn.scaleEffect(0.1414f);
 			turnActivated = false;
-			turn.getEmitters().get(0).getTint().setColors(new float[] {1, 1, 1, 0.5f});
+			turn.getEmitters().get(0).getTint().setColors(new float[] {
+					1, 1, 1, 0.5f
+			});
 		}
 	}
 

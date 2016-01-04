@@ -52,8 +52,8 @@ public class MenuScreen extends AbstractGameScreen {
 		
 		Background background = new Background((OrthographicCamera)stage.getCamera(),
 				Assets.instance.textures.background, true,
-				Assets.instance.textures.background.getRegionWidth(),
-				Assets.instance.textures.background.getRegionHeight());
+				Assets.instance.textures.background.getRegionWidth()*2,
+				Assets.instance.textures.background.getRegionHeight()*2);
 		engine.addSystem(background);
 
 	}

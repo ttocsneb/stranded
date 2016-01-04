@@ -71,7 +71,7 @@
         [
           
           {
-            "density" : 5,
+            "density" : 10.00000381469727,
             "filter-categoryBits" : 2,
             "friction" : 0.2,
             "id" : 2,
@@ -120,13 +120,13 @@
         ],
         "id" : 1,
         "linearVelocity" : 0,
-        "massData-I" : 0.03758839517831802,
+        "massData-I" : 0.07517681270837784,
         "massData-center" : 
         {
-          "x" : 0.002564264228567481,
-          "y" : -0.08991430699825287
+          "x" : 0.002564262831583619,
+          "y" : -0.08991429954767227
         },
-        "massData-mass" : 0.8020346760749817,
+        "massData-mass" : 1.604070067405701,
         "name" : "ship",
         "position" : 0,
         "type" : "dynamic"
