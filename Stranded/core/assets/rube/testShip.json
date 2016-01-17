@@ -4055,7 +4055,8 @@
 					},
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture9"
+					"name" : "fixture9",
+					"sensor" : true
 				}
 			],
 			"linearVelocity" : 0,
@@ -5607,64 +5608,65 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 17,
+			"body" : 25,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid3.png",
+			"file" : "asteroids/asteroid6.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image3",
+			"name" : "image6",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 52,
-			"center" : 0,
+			"body" : 64,
+			"center" : 
+			{
+				"x" : -3.099441528320313e-006,
+				"y" : 4.172325134277344e-007
+			},
 			"corners" : 
 			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"x" : 
+				[
+					-0.5000030994415283,
+					0.4999969005584717,
+					0.4999969005584717,
+					-0.5000030994415283
+				],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid3.png",
+			"file" : "asteroids/asteroid0.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image3",
+			"glVertexPointer" : 
+			[
+				-0.5000030994415283,
+				-0.5,
+				0.4999969005584717,
+				-0.5,
+				0.4999969005584717,
+				0.5,
+				-0.5000030994415283,
+				0.5
+			],
+			"name" : "image1",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 46,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid8.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image8",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 34,
+			"body" : 53,
 			"center" : 0,
 			"corners" : 
 			{
@@ -5702,45 +5704,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 45,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid6.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image6",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 54,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid1.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image0",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 2,
+			"body" : 34,
 			"center" : 0,
 			"corners" : 
 			{
@@ -5759,38 +5723,19 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 16,
+			"body" : 17,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid1.png",
+			"file" : "asteroids/asteroid3.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image0",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 51,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid5.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image5",
+			"name" : "image3",
 			"opacity" : 1,
 			"scale" : 1
 		},
@@ -5854,19 +5799,39 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 25,
-			"center" : 0,
+			"body" : 55,
+			"center" : 
+			{
+				"x" : -3.099441528320313e-006,
+				"y" : 4.172325134277344e-007
+			},
 			"corners" : 
 			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"x" : 
+				[
+					-0.5000030994415283,
+					0.4999969005584717,
+					0.4999969005584717,
+					-0.5000030994415283
+				],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid6.png",
+			"file" : "asteroids/asteroid0.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image6",
+			"glVertexPointer" : 
+			[
+				-0.5000030994415283,
+				-0.5,
+				0.4999969005584717,
+				-0.5,
+				0.4999969005584717,
+				0.5,
+				-0.5000030994415283,
+				0.5
+			],
+			"name" : "image1",
 			"opacity" : 1,
 			"scale" : 1
 		},
@@ -5949,26 +5914,104 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 32,
+			"body" : 20,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid1.png",
+			"file" : "asteroids/asteroid3.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image0",
+			"name" : "image3",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 56,
+			"body" : 31,
+			"center" : 
+			{
+				"x" : -3.099441528320313e-006,
+				"y" : 4.172325134277344e-007
+			},
+			"corners" : 
+			{
+				"x" : 
+				[
+					-0.5000030994415283,
+					0.4999969005584717,
+					0.4999969005584717,
+					-0.5000030994415283
+				],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid0.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : 
+			[
+				-0.5000030994415283,
+				-0.5,
+				0.4999969005584717,
+				-0.5,
+				0.4999969005584717,
+				0.5,
+				-0.5000030994415283,
+				0.5
+			],
+			"name" : "image1",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 28,
+			"center" : 
+			{
+				"x" : -3.099441528320313e-006,
+				"y" : 4.172325134277344e-007
+			},
+			"corners" : 
+			{
+				"x" : 
+				[
+					-0.5000030994415283,
+					0.4999969005584717,
+					0.4999969005584717,
+					-0.5000030994415283
+				],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid0.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : 
+			[
+				-0.5000030994415283,
+				-0.5,
+				0.4999969005584717,
+				-0.5,
+				0.4999969005584717,
+				0.5,
+				-0.5000030994415283,
+				0.5
+			],
+			"name" : "image1",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 30,
 			"center" : 0,
 			"corners" : 
 			{
@@ -5987,102 +6030,26 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 57,
+			"body" : 49,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid7.png",
+			"file" : "asteroids/asteroid8.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image7",
+			"name" : "image8",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 58,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid6.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image6",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 59,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid5.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image5",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 60,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid4.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image4",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 63,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid1.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image0",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 62,
+			"body" : 18,
 			"center" : 0,
 			"corners" : 
 			{
@@ -6120,7 +6087,7 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 18,
+			"body" : 62,
 			"center" : 0,
 			"corners" : 
 			{
@@ -6139,19 +6106,171 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 53,
+			"body" : 63,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid2.png",
+			"file" : "asteroids/asteroid1.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image2",
+			"name" : "image0",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 60,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid4.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image4",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 59,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid5.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image5",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 58,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid6.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image6",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 57,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid7.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image7",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 56,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid8.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image8",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 52,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid3.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image3",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 32,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid1.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image0",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 51,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid5.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image5",
 			"opacity" : 1,
 			"scale" : 1
 		},
@@ -6177,136 +6296,92 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 49,
+			"body" : 54,
 			"center" : 0,
 			"corners" : 
 			{
 				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid8.png",
+			"file" : "asteroids/asteroid1.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image8",
+			"name" : "image0",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 64,
-			"center" : 
-			{
-				"x" : -3.099441528320313e-006,
-				"y" : 4.172325134277344e-007
-			},
+			"body" : 65,
+			"center" : 0,
 			"corners" : 
 			{
 				"x" : 
 				[
-					-0.5000030994415283,
-					0.4999969005584717,
-					0.4999969005584717,
-					-0.5000030994415283
+					-0.3629032373428345,
+					0.3629032373428345,
+					0.3629032373428345,
+					-0.3629032373428345
 				],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+				"y" : [ -0.25, -0.25, 0.25, 0.25 ]
 			},
-			"file" : "asteroids/asteroid0.png",
+			"file" : "tmpship.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : 
 			[
-				-0.5000030994415283,
-				-0.5,
-				0.4999969005584717,
-				-0.5,
-				0.4999969005584717,
-				0.5,
-				-0.5000030994415283,
-				0.5
+				-0.3629032373428345,
+				-0.25,
+				0.3629032373428345,
+				-0.25,
+				0.3629032373428345,
+				0.25,
+				-0.3629032373428345,
+				0.25
 			],
-			"name" : "image1",
+			"name" : "image0",
+			"opacity" : 1,
+			"scale" : 0.5
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 2,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid2.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image2",
 			"opacity" : 1,
 			"scale" : 1
 		},
 		
 		{
 			"aspectScale" : 1,
-			"body" : 55,
-			"center" : 
-			{
-				"x" : -3.099441528320313e-006,
-				"y" : 4.172325134277344e-007
-			},
+			"body" : 13,
+			"center" : 0,
 			"corners" : 
 			{
-				"x" : 
-				[
-					-0.5000030994415283,
-					0.4999969005584717,
-					0.4999969005584717,
-					-0.5000030994415283
-				],
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid0.png",
+			"file" : "asteroids/asteroid6.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : 
-			[
-				-0.5000030994415283,
-				-0.5,
-				0.4999969005584717,
-				-0.5,
-				0.4999969005584717,
-				0.5,
-				-0.5000030994415283,
-				0.5
-			],
-			"name" : "image1",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 47,
-			"center" : 
-			{
-				"x" : -3.099441528320313e-006,
-				"y" : 4.172325134277344e-007
-			},
-			"corners" : 
-			{
-				"x" : 
-				[
-					-0.5000030994415283,
-					0.4999969005584717,
-					0.4999969005584717,
-					-0.5000030994415283
-				],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid0.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : 
-			[
-				-0.5000030994415283,
-				-0.5,
-				0.4999969005584717,
-				-0.5,
-				0.4999969005584717,
-				0.5,
-				-0.5000030994415283,
-				0.5
-			],
-			"name" : "image1",
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image6",
 			"opacity" : 1,
 			"scale" : 1
 		},
@@ -6600,37 +6675,59 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 65,
+			"body" : 16,
 			"center" : 0,
 			"corners" : 
 			{
-				"x" : 
-				[
-					-0.3629032373428345,
-					0.3629032373428345,
-					0.3629032373428345,
-					-0.3629032373428345
-				],
-				"y" : [ -0.25, -0.25, 0.25, 0.25 ]
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "tmpship.png",
+			"file" : "asteroids/asteroid1.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : 
-			[
-				-0.3629032373428345,
-				-0.25,
-				0.3629032373428345,
-				-0.25,
-				0.3629032373428345,
-				0.25,
-				-0.3629032373428345,
-				0.25
-			],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
 			"name" : "image0",
 			"opacity" : 1,
-			"scale" : 0.5
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 45,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid6.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image6",
+			"opacity" : 1,
+			"scale" : 1
+		},
+		
+		{
+			"aspectScale" : 1,
+			"body" : 46,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
+			},
+			"file" : "asteroids/asteroid8.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
+			"name" : "image8",
+			"opacity" : 1,
+			"scale" : 1
 		},
 		
 		{
@@ -6674,19 +6771,39 @@
 		
 		{
 			"aspectScale" : 1,
-			"body" : 13,
-			"center" : 0,
+			"body" : 47,
+			"center" : 
+			{
+				"x" : -3.099441528320313e-006,
+				"y" : 4.172325134277344e-007
+			},
 			"corners" : 
 			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
+				"x" : 
+				[
+					-0.5000030994415283,
+					0.4999969005584717,
+					0.4999969005584717,
+					-0.5000030994415283
+				],
 				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
 			},
-			"file" : "asteroids/asteroid6.png",
+			"file" : "asteroids/asteroid0.png",
 			"filter" : 0,
 			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image6",
+			"glVertexPointer" : 
+			[
+				-0.5000030994415283,
+				-0.5,
+				0.4999969005584717,
+				-0.5,
+				0.4999969005584717,
+				0.5,
+				-0.5000030994415283,
+				0.5
+			],
+			"name" : "image1",
 			"opacity" : 1,
 			"scale" : 1
 		},
@@ -6896,122 +7013,6 @@
 			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
 			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
 			"name" : "image6",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 30,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid8.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image8",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 28,
-			"center" : 
-			{
-				"x" : -3.099441528320313e-006,
-				"y" : 4.172325134277344e-007
-			},
-			"corners" : 
-			{
-				"x" : 
-				[
-					-0.5000030994415283,
-					0.4999969005584717,
-					0.4999969005584717,
-					-0.5000030994415283
-				],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid0.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : 
-			[
-				-0.5000030994415283,
-				-0.5,
-				0.4999969005584717,
-				-0.5,
-				0.4999969005584717,
-				0.5,
-				-0.5000030994415283,
-				0.5
-			],
-			"name" : "image1",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 31,
-			"center" : 
-			{
-				"x" : -3.099441528320313e-006,
-				"y" : 4.172325134277344e-007
-			},
-			"corners" : 
-			{
-				"x" : 
-				[
-					-0.5000030994415283,
-					0.4999969005584717,
-					0.4999969005584717,
-					-0.5000030994415283
-				],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid0.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : 
-			[
-				-0.5000030994415283,
-				-0.5,
-				0.4999969005584717,
-				-0.5,
-				0.4999969005584717,
-				0.5,
-				-0.5000030994415283,
-				0.5
-			],
-			"name" : "image1",
-			"opacity" : 1,
-			"scale" : 1
-		},
-		
-		{
-			"aspectScale" : 1,
-			"body" : 20,
-			"center" : 0,
-			"corners" : 
-			{
-				"x" : [ -0.5, 0.5, 0.5, -0.5 ],
-				"y" : [ -0.5, -0.5, 0.5, 0.5 ]
-			},
-			"file" : "asteroids/asteroid3.png",
-			"filter" : 0,
-			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
-			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
-			"glVertexPointer" : [ -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5 ],
-			"name" : "image3",
 			"opacity" : 1,
 			"scale" : 1
 		}

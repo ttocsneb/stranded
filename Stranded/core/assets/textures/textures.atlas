@@ -1,35 +1,61 @@
 
 textures.png
-size: 512,512
+size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Title
+  rotate: false
+  xy: 2, 260
+  size: 992, 225
+  orig: 992, 225
+  offset: 0, 0
+  index: -1
 background
   rotate: false
-  xy: 2, 130
+  xy: 2, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
-button
+enemy1
   rotate: false
-  xy: 2, 20
-  size: 109, 108
-  split: 16, 85, 16, 47
-  pad: 15, 15, 18, 15
-  orig: 109, 108
+  xy: 260, 100
+  size: 74, 74
+  orig: 74, 74
+  offset: 0, 0
+  index: -1
+enship
+  rotate: false
+  xy: 345, 221
+  size: 45, 37
+  orig: 45, 37
+  offset: 0, 0
+  index: -1
+laser
+  rotate: false
+  xy: 1014, 469
+  size: 8, 16
+  orig: 8, 16
   offset: 0, 0
   index: -1
 particle
   rotate: false
-  xy: 2, 2
+  xy: 996, 469
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
+ship
+  rotate: false
+  xy: 260, 176
+  size: 83, 82
+  orig: 83, 82
+  offset: 0, 0
+  index: -1
 tmpship
   rotate: false
-  xy: 260, 355
+  xy: 260, 67
   size: 45, 31
   orig: 45, 31
   offset: 0, 0

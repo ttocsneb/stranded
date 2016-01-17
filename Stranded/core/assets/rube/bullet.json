@@ -1,0 +1,143 @@
+
+{
+	"allowSleep" : true,
+	"autoClearForces" : true,
+	"body" : 
+	[
+		
+		{
+			"allowSleep" : false,
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"bullet" : true,
+			"fixture" : 
+			[
+				
+				{
+					"friction" : 0.2,
+					"name" : "fixture0",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.01111048180609942,
+								0.01111048180609942,
+								-0.01111048180609942,
+								-0.01111048180609942
+							],
+							"y" : 
+							[
+								-0.06439845263957977,
+								0.06439845263957977,
+								0.06439845263957977,
+								-0.06439845263957977
+							]
+						}
+					},
+					"sensor" : true
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "PlayerBullet",
+			"position" : 0,
+			"type" : 2
+		}
+	],
+	"collisionbitplanes" : 
+	{
+		"names" : 
+		[
+			"bitplane1",
+			"bitplane2",
+			"bitplane3",
+			"bitplane4",
+			"bitplane5",
+			"bitplane6",
+			"bitplane7",
+			"bitplane8",
+			"bitplane9",
+			"bitplane10",
+			"bitplane11",
+			"bitplane12",
+			"bitplane13",
+			"bitplane14",
+			"bitplane15",
+			"bitplane16",
+			"bitplane17",
+			"bitplane18",
+			"bitplane19",
+			"bitplane20",
+			"bitplane21",
+			"bitplane22",
+			"bitplane23",
+			"bitplane24",
+			"bitplane25",
+			"bitplane26",
+			"bitplane27",
+			"bitplane28",
+			"bitplane29",
+			"bitplane30",
+			"bitplane31",
+			"bitplane32"
+		]
+	},
+	"continuousPhysics" : true,
+	"gravity" : 
+	{
+		"x" : 0,
+		"y" : -10
+	},
+	"image" : 
+	[
+		
+		{
+			"aspectScale" : 1,
+			"body" : 0,
+			"center" : 0,
+			"corners" : 
+			{
+				"x" : 
+				[
+					-0.03219922631978989,
+					0.03219922631978989,
+					0.03219922631978989,
+					-0.03219922631978989
+				],
+				"y" : 
+				[
+					-0.06439845263957977,
+					-0.06439845263957977,
+					0.06439845263957977,
+					0.06439845263957977
+				]
+			},
+			"file" : "../../../../raw/textures/laser.png",
+			"filter" : 0,
+			"glDrawElements" : [ 0, 1, 2, 2, 3, 0 ],
+			"glTexCoordPointer" : [ 0.0, 0.0, 1, 0.0, 1, 1, 0.0, 1 ],
+			"glVertexPointer" : 
+			[
+				-0.03219922631978989,
+				-0.06439845263957977,
+				0.03219922631978989,
+				-0.06439845263957977,
+				0.03219922631978989,
+				0.06439845263957977,
+				-0.03219922631978989,
+				0.06439845263957977
+			],
+			"name" : "image0",
+			"opacity" : 1,
+			"scale" : 0.1287969052791596
+		}
+	],
+	"positionIterations" : 3,
+	"stepsPerSecond" : 60.0,
+	"subStepping" : false,
+	"velocityIterations" : 8,
+	"warmStarting" : true
+}
