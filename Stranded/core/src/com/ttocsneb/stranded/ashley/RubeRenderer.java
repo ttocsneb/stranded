@@ -266,9 +266,15 @@ public class RubeRenderer extends EntitySystem {
 				Assets.instance.textures.asteroid.ast7);
 		textures.put("asteroids/asteroid8.png",
 				Assets.instance.textures.asteroid.ast8);
+		
+		textures.put("laser.png", Assets.instance.textures.laser);
+		
+		textures.put("enship.png", Assets.instance.textures.enemy);
 
-		textures.put("tmpship.png", Assets.instance.textures.spaceShip);
+		textures.put("ship.png", Assets.instance.textures.spaceShip);
 		textures.put("background.png", Assets.instance.textures.background);
+
+		textures.put("enemy1.png", Assets.instance.textures.enemy);
 		loaded = true;
 	}
 

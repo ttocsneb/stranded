@@ -50,20 +50,34 @@ public class Global {
 	 */
 	public static class Config {
 
-		public static Preferences prefs = Gdx.app.getPreferences("Cube");
+		public static Preferences prefs = Gdx.app.getPreferences("Stranded");
 
 		private static final String MUTE_ID = "mute";
 		public static boolean MUTE = false;
+		private static final String VOL_ID = "volume";
+		public static float VOLUME = 1f;
+		
+		private static final String MUSIC_MUTE_ID = "mute_music";
+		public static boolean MUTEMUSIC = false;
+		private static final String MUSIC_VOL_ID = "music_volume";
+		public static float MUSICVOLUME = 1f;
+		
 
 		/**
 		 * Load the configuration.
 		 */
 		public static void load() {
 			MUTE = prefs.getBoolean(MUTE_ID, false);
+			VOLUME = prefs.getFloat(VOL_ID, 1);
+			MUTEMUSIC = prefs.getBoolean(MUSIC_MUTE_ID, false);
+			MUSICVOLUME = prefs.getFloat(MUSIC_VOL_ID, 1);
 		}
 
 		public static void save() {
 			prefs.putBoolean(MUTE_ID, MUTE);
+			prefs.putFloat(VOL_ID, VOLUME);
+			prefs.putBoolean(MUSIC_MUTE_ID, MUTEMUSIC);
+			prefs.putFloat(MUSIC_VOL_ID, MUSICVOLUME);
 			prefs.flush();
 		}
 	}

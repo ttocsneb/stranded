@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -91,15 +92,29 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AssetAsteroid asteroid;
 
 		public final AssetStation station;
+		
+		public final AtlasRegion en;
+		public final AtlasRegion enemy;
 
+		public final AtlasRegion title;
+		public final AtlasRegion laser;
+		
 		public AssetTextures(TextureAtlas atlas) {
 
-			spaceShip = atlas.findRegion("tmpship");
+			spaceShip = atlas.findRegion("ship");
 			background = atlas.findRegion("background");
 
+			en = atlas.findRegion("enemy1");
+			
+			enemy = atlas.findRegion("enship");
+			
 			asteroid = new AssetAsteroid(atlas);
 
 			station = new AssetStation(atlas);
+			
+			title = atlas.findRegion("Title");
+			
+			laser = atlas.findRegion("laser");
 
 		}
 
@@ -181,14 +196,21 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetParticles {
 
 		private final ParticleEffect fireeffect;
-		
 		public final ParticleEffectPool fire;
+		
+		private final ParticleEffect explodeeffect;
+		public final ParticleEffectPool explode;
 
 		public AssetParticles(TextureAtlas atlas) {
 			fireeffect = new ParticleEffect();
 			fireeffect.load(Gdx.files.internal("particles/flame.p"), atlas);
 
 			fire = new ParticleEffectPool(fireeffect, 4, 16);
+			
+			explodeeffect = new ParticleEffect();
+			explodeeffect.load(Gdx.files.internal("particles/explosion.p"), atlas);
+			
+			explode = new ParticleEffectPool(explodeeffect, 4, 16);
 			
 		}
 	}
@@ -206,11 +228,11 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetSounds {
 
 		// public final Sound load;
-		// public final Music music;
+		public final Music music;
 
 		public AssetSounds(AssetManager am) {
 			// load = am.get("sounds/Load.wav", Sound.class);
-			// music = am.get("music/Blip Stream.mp3", Music.class);
+			music = am.get("music/Clash Defiant.mp3", Music.class);
 		}
 
 	}
@@ -282,6 +304,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		// set asset manager error handler.
 		assetManager.setErrorListener(this);
 		// load texture atlas
+		
+		assetManager.load("music/Clash Defiant.mp3", Music.class);
+		
 		assetManager.load(Global.TEXTURE_ATLAS, TextureAtlas.class);
 
 		for (String s : ATLASES) {

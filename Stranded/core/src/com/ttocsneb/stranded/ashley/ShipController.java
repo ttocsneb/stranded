@@ -10,21 +10,30 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.ttocsneb.stranded.ashley.collision.CollisionListener;
+import com.ttocsneb.stranded.ashley.component.EnemyComponent;
+import com.ttocsneb.stranded.ashley.component.ShipComponent;
+import com.ttocsneb.stranded.game.GameScreen;
 import com.ttocsneb.stranded.util.Assets;
 
 /**
  * @author TtocsNeb
  *
  */
-public class ShipController extends EntitySystem {
+public class ShipController extends EntitySystem implements
+		CollisionListener<ShipComponent> {
 
 	public Body ship;
+
+	public float health = 100;
 
 	private float acceleration = 5;
 	private float angularAcceleration = 0.5f;
 
-	private PooledEffect thruster;
+	private PooledEffect thruster1;
+	private PooledEffect thruster2;
 	private PooledEffect turn;
 
 	Particles particles;
@@ -32,15 +41,29 @@ public class ShipController extends EntitySystem {
 	private boolean thrustActivated;
 	private boolean turnActivated;
 
-	private PointLight burn;
+	private PointLight burn1;
+	private PointLight burn2;
 
-	public ShipController(Body ship, RayHandler lightSystem, Particles particles) {
+	private Bullet bullets;
+
+	public ShipController(Body ship, RayHandler lightSystem,
+			Particles particles, Bullet bullets) {
 		this.ship = ship;
 		this.particles = particles;
+		this.bullets = bullets;
 
-		thruster = Assets.instance.particles.fire.obtain();// Obtain that fire!
+		ShipComponent c = new ShipComponent();
+		c.body = ship;
+		ship.setUserData(c);
+		
+		Gdx.app.debug("Ship", ship.getUserData() == null ? "None" : ship
+				.getUserData().getClass().getName());
+
+		thruster1 = Assets.instance.particles.fire.obtain();// Obtain that fire!
+		thruster1.scaleEffect(0.25f);
+		thruster2 = Assets.instance.particles.fire.obtain();// Obtain that fire!
+		thruster2.scaleEffect(0.25f);
 		thrustActivated = false;
-		thruster.scaleEffect(0.25f);
 
 		turn = Assets.instance.particles.fire.obtain();
 		turnActivated = false;
@@ -49,13 +72,18 @@ public class ShipController extends EntitySystem {
 				1, 1, 1, 0.5f
 		});
 
-		burn = new PointLight(lightSystem, 512);
-		burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
-		burn.attachToBody(ship, 0, -0.3f);
-		burn.setDistance(3);
+		burn1 = new PointLight(lightSystem, 512);
+		burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+		burn1.attachToBody(ship, 0.25f, -0.57f);
+		burn1.setDistance(5);
+		burn2 = new PointLight(lightSystem, 512);
+		burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+		burn2.attachToBody(ship, -0.25f, -0.57f);
+		burn2.setDistance(5);
 
-		new PointLight(lightSystem, 512, new Color(1, 1, 1, 0.5f), 5, 0, 0).attachToBody(ship, 0, 0.25f);
-		
+		// new PointLight(lightSystem, 512, new Color(1, 1, 1, 0.5f), 5, 0,
+		// 0).attachToBody(ship, 0, 0.25f);
+
 	}
 
 	@Override
@@ -73,7 +101,7 @@ public class ShipController extends EntitySystem {
 	 *            offset in radians
 	 */
 	private void setData(PooledEffect effect, float distance, float rotation,
-			float delta) {
+			float orientation, float delta) {
 		float angle = ship.getAngle() + rotation;
 
 		effect.setPosition(
@@ -88,6 +116,8 @@ public class ShipController extends EntitySystem {
 								.cos((float) (2 * Math.PI - angle + 0.5f * Math.PI))
 						+ ship.getLinearVelocity().y * delta);
 
+		angle = ship.getAngle() + rotation;
+
 		effect.getEmitters().get(0).getAngle()
 				.setHighMin(angle * MathUtils.radiansToDegrees - 15);
 		effect.getEmitters().get(0).getAngle()
@@ -101,6 +131,8 @@ public class ShipController extends EntitySystem {
 				.setHigh(ship.getLinearVelocity().y);
 	}
 
+	private boolean flip;
+
 	@Override
 	public void update(float delta) {
 
@@ -108,14 +140,21 @@ public class ShipController extends EntitySystem {
 		if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
 			// Move the ship forwards if the up arrow/W key is pressed
 
-
-			setData(thruster, 0.25f, (float) (1.5f * Math.PI), delta);
+			setData(thruster1, 0.56f, (float) (-1.1f),
+					(float) (1.5f * Math.PI), delta);
+			setData(thruster2, 0.56f, (float) (1.1f + Math.PI),
+					(float) (1.5f * Math.PI), delta);
 
 			if (!thrustActivated) {
-				particles.addEffect(thruster);
+				particles.addEffect(thruster1);
+				particles.addEffect(thruster2);
 				thrustActivated = true;
-				burn.setActive(true);
-				burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+				burn1.setActive(true);
+				burn2.setActive(true);
+				burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
+						0.66f));
+				burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
+						0.66f));
 			}
 
 			ship.applyForceToCenter(
@@ -129,21 +168,29 @@ public class ShipController extends EntitySystem {
 									.getAngle())), true);
 
 		} else {
-			thruster.allowCompletion();
-			thruster = Assets.instance.particles.fire.obtain();
-			thruster.scaleEffect(0.25f);
+			thruster1.allowCompletion();
+			thruster1 = Assets.instance.particles.fire.obtain();
+			thruster1.scaleEffect(0.25f);
+			thruster2.allowCompletion();
+			thruster2 = Assets.instance.particles.fire.obtain();
+			thruster2.scaleEffect(0.25f);
 			thrustActivated = false;
-			
-			if(burn.getColor().a <= 0) {
-				burn.setActive(false);
+
+			if (burn1.getColor().a <= 0) {
+				burn1.setActive(false);
+				burn2.setActive(true);
 			} else {
-				burn.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, burn.getColor().a - delta));
+				burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
+						burn1.getColor().a - delta));
+				burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
+						burn1.getColor().a - delta));
 			}
 		}
 		// Turn the ship
 		if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
 
-			setData(turn, 0.141f, (float) (0.25f * Math.PI), delta);
+			setData(turn, 0.5f, (float) (0.25f * Math.PI),
+					(float) (0 * Math.PI), delta);
 
 			if (!turnActivated) {
 				particles.addEffect(turn);
@@ -155,7 +202,8 @@ public class ShipController extends EntitySystem {
 		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)
 				|| Gdx.input.isKeyPressed(Keys.D)) {
 
-			setData(turn, 0.141f, (float) (0.75f * Math.PI), delta);
+			setData(turn, 0.5f, (float) (0.75f * Math.PI),
+					(float) (0 * Math.PI), delta);
 
 			if (!turnActivated) {
 				particles.addEffect(turn);
@@ -173,7 +221,8 @@ public class ShipController extends EntitySystem {
 						* angularAcceleration * ship.getMass(), true);
 
 				setData(turn,
-						0.141f,
+						0.5f,
+						(float) ((ship.getAngularVelocity() > 0 ? 0.75f : 0.25f) * Math.PI),
 						(float) ((ship.getAngularVelocity() > 0 ? 0.75f : 0.25f) * Math.PI),
 						delta);
 
@@ -202,6 +251,51 @@ public class ShipController extends EntitySystem {
 					1, 1, 1, 0.5f
 			});
 		}
+
+		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			flip = !flip;
+			bullets.shoot(
+					new Vector2(
+							(float) Math.sin(MathUtils.PI2 - ship.getAngle()
+									+ (flip ? -1.331f : +1.331f)) * 0.1f,
+							(float) Math.cos(MathUtils.PI2 - ship.getAngle()
+									+ (flip ? -1.331f : +1.331f)) * 0.1f)
+							.add(ship.getPosition()),
+					new Vector2(
+							MathUtils.sin(MathUtils.PI2 - ship.getAngle()) * 10,
+							MathUtils.cos(MathUtils.PI2 - ship.getAngle()) * 10)
+							.add(ship.getLinearVelocity()), ship.getAngle());
+		}
+	}
+
+	@Override
+	public Class<ShipComponent> getClaimedClass() {
+		return ShipComponent.class;
+	}
+
+	@Override
+	public void beginContact(Object object1, Object object2) {
+		if (object2 instanceof EnemyComponent) {
+			EnemyComponent c = (EnemyComponent) object2;
+			float h = ship.getLinearVelocity().dst(c.body.getLinearVelocity())/4f;
+			Gdx.app.debug("ShipController", "HealthLoss: " + h);
+			if(h > 1) {
+				PooledEffect e = Assets.instance.particles.explode.obtain();
+				e.setPosition(ship.getPosition().x, ship.getPosition().y);
+				particles.addEffect(e);
+				health -= h;
+				Gdx.app.debug("SHIP Health", health + "");
+				if(health <= 0) {
+					GameScreen.lose = true;
+					Gdx.app.debug("GAME", "You LOSE");
+				}
+			}
+		}
+	}
+
+	@Override
+	public void endContact(Object object1, Object object2) {
+
 	}
 
 }
