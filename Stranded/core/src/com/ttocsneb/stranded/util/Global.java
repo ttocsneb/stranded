@@ -62,7 +62,12 @@ public class Global {
 		private static final String MUSIC_VOL_ID = "music_volume";
 		public static float MUSICVOLUME = 1f;
 		
-
+		
+		private static final String SHADOW_ID = "shadow_quality";
+		public static float SHADOW = 1f;
+		
+		private static final String HIGH_ID = "high_score";
+		public static int HIGHSCORE = 0;
 		/**
 		 * Load the configuration.
 		 */
@@ -71,6 +76,9 @@ public class Global {
 			VOLUME = prefs.getFloat(VOL_ID, 1);
 			MUTEMUSIC = prefs.getBoolean(MUSIC_MUTE_ID, false);
 			MUSICVOLUME = prefs.getFloat(MUSIC_VOL_ID, 1);
+			HIGHSCORE = prefs.getInteger(HIGH_ID, 0);
+			
+			SHADOW = prefs.getFloat(SHADOW_ID, 1f);
 		}
 
 		public static void save() {
@@ -78,6 +86,8 @@ public class Global {
 			prefs.putFloat(VOL_ID, VOLUME);
 			prefs.putBoolean(MUSIC_MUTE_ID, MUTEMUSIC);
 			prefs.putFloat(MUSIC_VOL_ID, MUSICVOLUME);
+			prefs.putFloat(SHADOW_ID, SHADOW);
+			prefs.putInteger(HIGH_ID, HIGHSCORE);
 			prefs.flush();
 		}
 	}

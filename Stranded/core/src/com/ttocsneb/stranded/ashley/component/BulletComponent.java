@@ -14,4 +14,5 @@ public class BulletComponent implements Component {
 	
 	public boolean inUse;
 	
+	public float time;
 }

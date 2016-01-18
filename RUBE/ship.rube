@@ -55,11 +55,7 @@
       "useHumanReadableFloats" : true,
       "usePrettyPrint" : true
     },
-    "gravity" : 
-    {
-      "x" : 0,
-      "y" : -10
-    },
+    "gravity" : 0,
     "metabody" : 
     [
       
@@ -160,7 +156,38 @@
         },
         "massData-mass" : 7.885671138763428,
         "name" : "ship",
+        "position" : 
+        {
+          "x" : -0.008131980895996094,
+          "y" : 0.05776143074035645
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 2,
+        "linearVelocity" : 0,
+        "name" : "Anchor",
         "position" : 0,
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 3,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "Anchor2",
+        "position" : 
+        {
+          "x" : 9.730848312377930,
+          "y" : -2.294438362121582
+        },
         "type" : "dynamic"
       }
     ],
@@ -178,6 +205,39 @@
         "name" : "image0",
         "opacity" : 1,
         "scale" : 1.118533015251160
+      }
+    ],
+    "metajoint" : 
+    [
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 0,
+        "bodyA" : 2,
+        "bodyB" : 3,
+        "collideConnected" : false,
+        "id" : 5,
+        "maxLength" : 100.0,
+        "name" : "rope",
+        "type" : "rope"
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : 0.006855940911918879,
+          "y" : -0.05433205515146256
+        },
+        "bodyA" : 3,
+        "bodyB" : 1,
+        "collideConnected" : false,
+        "dampingRatio" : 1,
+        "frequency" : 1,
+        "id" : 6,
+        "length" : 10,
+        "name" : "ship",
+        "type" : "distance"
       }
     ],
     "positionIterations" : 3,

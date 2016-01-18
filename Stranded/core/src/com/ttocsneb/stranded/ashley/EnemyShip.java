@@ -13,6 +13,7 @@ import com.ttocsneb.stranded.ashley.component.BulletComponent;
 import com.ttocsneb.stranded.ashley.component.EnemyComponent;
 import com.ttocsneb.stranded.game.GameScreen;
 import com.ttocsneb.stranded.util.Assets;
+import com.ttocsneb.stranded.util.Global;
 
 /**
  * @author TtocsNeb
@@ -39,8 +40,8 @@ public class EnemyShip extends EntitySystem implements
 		exp = new PointLight[5];
 
 		for (int i=0; i<exp.length; i++) {
-			exp[i] = new PointLight(lightSystem, 512);
-			exp[i].setColor(1, 0, 0, 0.66f);
+			exp[i] = new PointLight(lightSystem, (int) (512*Global.Config.SHADOW));
+			exp[i].setColor(0, 1, 0, 1);
 			exp[i].setDistance(5);
 			exp[i].setActive(false);
 		}
@@ -50,6 +51,10 @@ public class EnemyShip extends EntitySystem implements
 			c.body = b;
 			c.active = false;
 			b.setUserData(c);
+			PointLight l = new PointLight(lightSystem, (int) (512*Global.Config.SHADOW));
+			l.attachToBody(b, 0, -0.26f);
+			l.setColor(0, 1, 0, 0.45f);
+			l.setDistance(3);
 		}
 
 	}
@@ -58,7 +63,7 @@ public class EnemyShip extends EntitySystem implements
 	public void update(float delta) {
 		for(PointLight p : exp) {
 			if(p.isActive()) {
-				p.setColor(1, 0, 0, p.getColor().a-delta);
+				p.setColor(0, 1, 0, p.getColor().a-delta/3f);
 				if(p.getColor().a <= 0) {
 					p.setActive(false);
 				}
@@ -111,15 +116,21 @@ public class EnemyShip extends EntitySystem implements
 		EnemyComponent c = (EnemyComponent) object1;
 		if (object2 instanceof BulletComponent) {
 			
-			GameScreen.points += 10;
+			GameScreen.points += 10*GameScreen.multiplier;
+			
+			if(!Global.Config.MUTE) {
+				Assets.instance.sounds.explode.play(Global.Config.VOLUME);
+			}
 			
 			c.health = c.health - 1;
 			PooledEffect e = Assets.instance.particles.explode.obtain();
+			e.getEmitters().first().getTint().setColors(new float[] {0, 1, 0, 1});
+			e.scaleEffect(0.75f);
 			e.setPosition(c.body.getPosition().x, c.body.getPosition().y);
 			for(PointLight p : exp) {
 				if(!p.isActive()) {
 					p.setPosition(c.body.getPosition());
-					p.setColor(1, 0, 0, 0.66f);
+					p.setColor(0, 1, 0, 0.66f);
 					p.setActive(true);
 					break;
 				}

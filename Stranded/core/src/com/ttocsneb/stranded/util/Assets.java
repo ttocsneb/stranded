@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -99,6 +100,8 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final AtlasRegion title;
 		public final AtlasRegion laser;
 		
+		public final AtlasRegion lose;
+		
 		public AssetTextures(TextureAtlas atlas) {
 
 			spaceShip = atlas.findRegion("ship");
@@ -115,6 +118,8 @@ public class Assets implements Disposable, AssetErrorListener {
 			title = atlas.findRegion("Title");
 			
 			laser = atlas.findRegion("laser");
+			
+			lose = atlas.findRegion("lose");
 
 		}
 
@@ -216,7 +221,10 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 
 	private static void loadSounds(AssetManager am) {
-		// am.load("music/Blip Stream.mp3", Music.class);
+		am.load("music/Ossuary 4 - Animate.mp3", Music.class);
+		am.load("sounds/smolsplode.wav", Sound.class);
+		am.load("sounds/shoot.wav", Sound.class);
+		am.load("sounds/rocket.wav", Sound.class);
 	}
 
 	/**
@@ -227,12 +235,17 @@ public class Assets implements Disposable, AssetErrorListener {
 	 */
 	public class AssetSounds {
 
-		// public final Sound load;
+		public final Sound explode;
 		public final Music music;
+		public final Sound shoot;
+		public final Sound rocket;
 
 		public AssetSounds(AssetManager am) {
-			// load = am.get("sounds/Load.wav", Sound.class);
-			music = am.get("music/Clash Defiant.mp3", Music.class);
+			explode = am.get("sounds/smolsplode.wav", Sound.class);
+			music = am.get("music/Ossuary 4 - Animate.mp3", Music.class);
+			shoot = am.get("sounds/shoot.wav", Sound.class);
+			rocket = am.get("sounds/rocket.wav");
+			
 		}
 
 	}
@@ -304,8 +317,6 @@ public class Assets implements Disposable, AssetErrorListener {
 		// set asset manager error handler.
 		assetManager.setErrorListener(this);
 		// load texture atlas
-		
-		assetManager.load("music/Clash Defiant.mp3", Music.class);
 		
 		assetManager.load(Global.TEXTURE_ATLAS, TextureAtlas.class);
 

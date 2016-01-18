@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.ParticleEffectPool.PooledEffect;
 import com.badlogic.gdx.math.MathUtils;
@@ -17,6 +18,7 @@ import com.ttocsneb.stranded.ashley.component.EnemyComponent;
 import com.ttocsneb.stranded.ashley.component.ShipComponent;
 import com.ttocsneb.stranded.game.GameScreen;
 import com.ttocsneb.stranded.util.Assets;
+import com.ttocsneb.stranded.util.Global;
 
 /**
  * @author TtocsNeb
@@ -43,19 +45,29 @@ public class ShipController extends EntitySystem implements
 
 	private PointLight burn1;
 	private PointLight burn2;
+	
+	private PointLight exp;
 
 	private Bullet bullets;
 
+	private Sound shipSounds;
 	public ShipController(Body ship, RayHandler lightSystem,
 			Particles particles, Bullet bullets) {
 		this.ship = ship;
 		this.particles = particles;
 		this.bullets = bullets;
+		
+		exp = new PointLight(lightSystem, (int) (512*Global.Config.SHADOW));
+		exp.setColor(1, 0, 0, 1);
+		exp.setDistance(10);
+		exp.setActive(false);
+
+		shipSounds = Assets.instance.sounds.rocket;
 
 		ShipComponent c = new ShipComponent();
 		c.body = ship;
 		ship.setUserData(c);
-		
+
 		Gdx.app.debug("Ship", ship.getUserData() == null ? "None" : ship
 				.getUserData().getClass().getName());
 
@@ -72,17 +84,17 @@ public class ShipController extends EntitySystem implements
 				1, 1, 1, 0.5f
 		});
 
-		burn1 = new PointLight(lightSystem, 512);
-		burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+		burn1 = new PointLight(lightSystem, (int) (512*Global.Config.SHADOW));
+		burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.5f));
 		burn1.attachToBody(ship, 0.25f, -0.57f);
 		burn1.setDistance(5);
-		burn2 = new PointLight(lightSystem, 512);
-		burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.66f));
+		burn2 = new PointLight(lightSystem, (int) (512*Global.Config.SHADOW));
+		burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b, 0.5f));
 		burn2.attachToBody(ship, -0.25f, -0.57f);
 		burn2.setDistance(5);
 
-		// new PointLight(lightSystem, 512, new Color(1, 1, 1, 0.5f), 5, 0,
-		// 0).attachToBody(ship, 0, 0.25f);
+		new PointLight(lightSystem, (int) (512*Global.Config.SHADOW), new Color(1, 1, 1, 0.75f), 10, 0, 0)
+				.attachToBody(ship, 0, 0.6f);
 
 	}
 
@@ -104,6 +116,7 @@ public class ShipController extends EntitySystem implements
 			float orientation, float delta) {
 		float angle = ship.getAngle() + rotation;
 
+		
 		effect.setPosition(
 				ship.getPosition().x
 						+ distance
@@ -133,12 +146,25 @@ public class ShipController extends EntitySystem implements
 
 	private boolean flip;
 
+	private boolean playing = false;
+
 	@Override
 	public void update(float delta) {
 
+		if(exp.isActive()) {
+			exp.setColor(1, 0, 0, exp.getColor().a-delta/2f);
+			if(exp.getColor().a <= 0) {
+				exp.setActive(false);
+			}
+		}
+		
 		// ////////// Ship Controls /////////////////////
 		if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
 			// Move the ship forwards if the up arrow/W key is pressed
+			if (!playing && !Global.Config.MUTE) {
+				shipSounds.loop(Global.Config.VOLUME);
+				playing = true;
+			}
 
 			setData(thruster1, 0.56f, (float) (-1.1f),
 					(float) (1.5f * Math.PI), delta);
@@ -152,9 +178,9 @@ public class ShipController extends EntitySystem implements
 				burn1.setActive(true);
 				burn2.setActive(true);
 				burn1.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
-						0.66f));
+						0.5f));
 				burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
-						0.66f));
+						0.5f));
 			}
 
 			ship.applyForceToCenter(
@@ -185,6 +211,8 @@ public class ShipController extends EntitySystem implements
 				burn2.setColor(new Color(Color.RED.r, Color.RED.g, Color.RED.b,
 						burn1.getColor().a - delta));
 			}
+			shipSounds.stop();
+			playing = false;
 		}
 		// Turn the ship
 		if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
@@ -253,8 +281,9 @@ public class ShipController extends EntitySystem implements
 		}
 
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+			
 			flip = !flip;
-			bullets.shoot(
+			if(bullets.shoot(
 					new Vector2(
 							(float) Math.sin(MathUtils.PI2 - ship.getAngle()
 									+ (flip ? -1.331f : +1.331f)) * 0.1f,
@@ -264,8 +293,11 @@ public class ShipController extends EntitySystem implements
 					new Vector2(
 							MathUtils.sin(MathUtils.PI2 - ship.getAngle()) * 10,
 							MathUtils.cos(MathUtils.PI2 - ship.getAngle()) * 10)
-							.add(ship.getLinearVelocity()), ship.getAngle());
+							.add(ship.getLinearVelocity()), ship.getAngle()) && !Global.Config.MUTE) {
+				Assets.instance.sounds.shoot.play(Global.Config.VOLUME);
+			}
 		}
+		
 	}
 
 	@Override
@@ -275,20 +307,50 @@ public class ShipController extends EntitySystem implements
 
 	@Override
 	public void beginContact(Object object1, Object object2) {
+		
 		if (object2 instanceof EnemyComponent) {
 			EnemyComponent c = (EnemyComponent) object2;
-			float h = ship.getLinearVelocity().dst(c.body.getLinearVelocity())/4f;
+			float h = ship.getLinearVelocity().dst(c.body.getLinearVelocity()) / 4f;
 			Gdx.app.debug("ShipController", "HealthLoss: " + h);
+			if (h > 0.75f) {
+				health -= h;
+				Gdx.app.debug("SHIP Health", health + "");
+				
+				if(!Global.Config.MUTE)Assets.instance.sounds.explode.play(Global.Config.VOLUME);
+				PooledEffect e = Assets.instance.particles.explode.obtain();
+				e.setPosition(ship.getPosition().x, ship.getPosition().y);
+				exp.setActive(true);
+				exp.setColor(1, 0, 0, 1);
+				exp.setPosition(ship.getPosition());
+				particles.addEffect(e);
+				GameScreen.multiplier /= 4;
+				GameScreen.multiplier = Math.max(GameScreen.multiplier, 1);
+			} else {
+				health -= 1/20f;
+				Gdx.app.debug("SHIP Health", health + "");
+			}
+			
+			if (health <= 0) {
+				GameScreen.lose = true;
+				Gdx.app.debug("GAME", "You LOSE");
+			}
+		} else if(object2 instanceof Body) {
+			Body b = (Body) object2;
+			float h = ship.getLinearVelocity().dst(b.getLinearVelocity())/4f;
+			Gdx.app.debug("ShipController", "Hit Something!; HealthLos: " + h);
 			if(h > 1) {
+				health -= h;
+				Gdx.app.debug("SHIP Health", health + "");
+				
+				if(!Global.Config.MUTE)Assets.instance.sounds.explode.play(Global.Config.VOLUME);
 				PooledEffect e = Assets.instance.particles.explode.obtain();
 				e.setPosition(ship.getPosition().x, ship.getPosition().y);
 				particles.addEffect(e);
-				health -= h;
-				Gdx.app.debug("SHIP Health", health + "");
-				if(health <= 0) {
-					GameScreen.lose = true;
-					Gdx.app.debug("GAME", "You LOSE");
-				}
+				exp.setActive(true);
+				exp.setColor(1, 0, 0, 1);
+				exp.setPosition(ship.getPosition());
+				GameScreen.multiplier /= 4;
+				GameScreen.multiplier = Math.max(GameScreen.multiplier, 1);
 			}
 		}
 	}

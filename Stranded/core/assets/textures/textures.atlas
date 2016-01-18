@@ -13,21 +13,21 @@ Title
   index: -1
 background
   rotate: false
-  xy: 2, 2
+  xy: 486, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 enemy1
   rotate: false
-  xy: 260, 100
+  xy: 744, 184
   size: 74, 74
   orig: 74, 74
   offset: 0, 0
   index: -1
 enship
   rotate: false
-  xy: 345, 221
+  xy: 2, 8
   size: 45, 37
   orig: 45, 37
   offset: 0, 0
@@ -39,6 +39,13 @@ laser
   orig: 8, 16
   offset: 0, 0
   index: -1
+lose
+  rotate: false
+  xy: 2, 131
+  size: 482, 127
+  orig: 482, 127
+  offset: 0, 0
+  index: -1
 particle
   rotate: false
   xy: 996, 469
@@ -48,14 +55,14 @@ particle
   index: -1
 ship
   rotate: false
-  xy: 260, 176
+  xy: 2, 47
   size: 83, 82
   orig: 83, 82
   offset: 0, 0
   index: -1
 tmpship
   rotate: false
-  xy: 260, 67
+  xy: 87, 98
   size: 45, 31
   orig: 45, 31
   offset: 0, 0

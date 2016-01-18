@@ -7,11 +7,11 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.utils.Array;
 import com.ttocsneb.stranded.ashley.collision.CollisionListener;
 import com.ttocsneb.stranded.ashley.component.BulletComponent;
 import com.ttocsneb.stranded.ashley.component.ShipComponent;
+import com.ttocsneb.stranded.util.Global;
 
 /**
  * @author TtocsNeb
@@ -30,13 +30,22 @@ public class Bullet extends EntitySystem implements
 			c.inUse = false;
 			b.setUserData(c);
 
-			PointLight l = new PointLight(lights, 512);
+			PointLight l = new PointLight(lights, (int) (512*Global.Config.SHADOW));
 			l.attachToBody(b);
 			l.setDistance(5);
 			l.setColor(0, 0, 1, 0.6f);
-			Filter f = new Filter();
-			f.categoryBits = 4;
-			l.setContactFilter(f);
+		}
+	}
+	
+	@Override
+	public void update(float delta) {
+		for(Body b : bullets) {
+			BulletComponent c = (BulletComponent) b.getUserData();
+			if(c.inUse && (c.time -= delta) < 0) {
+				c.inUse = false;
+				b.setLinearVelocity(0, 0);
+				b.setTransform(-110, -110, 0);
+			}
 		}
 	}
 
@@ -49,6 +58,7 @@ public class Bullet extends EntitySystem implements
 				b.setLinearVelocity(velocity);
 				b.setAngularVelocity(0);
 				c.inUse = true;
+				c.time = 10;
 				return true;
 			}
 		}

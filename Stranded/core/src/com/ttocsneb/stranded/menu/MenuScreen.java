@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -70,6 +71,10 @@ public class MenuScreen extends AbstractGameScreen {
 				Assets.instance.textures.background.getRegionHeight()*2);
 		engine.addSystem(background);
 
+		Assets.instance.sounds.explode.stop();
+		Assets.instance.sounds.rocket.stop();
+		Assets.instance.sounds.shoot.stop();
+		
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class MenuScreen extends AbstractGameScreen {
 		settings.setVisible(false);
 		stage.addActor(settings);
 		
-		//settings.add(new Label("Sound", Assets.instance.skins.skin)).colspan(2).row();
+		settings.add(new Label("Audio", Assets.instance.skins.skin)).colspan(2).row();
 		final CheckBox mutesound = new CheckBox("sound", Assets.instance.skins.skin);
 		mutesound.setChecked(!Global.Config.MUTE);
 		final Slider volume = new Slider(0.1f, 1, 0.1f, false, Assets.instance.skins.skin);
@@ -106,6 +111,14 @@ public class MenuScreen extends AbstractGameScreen {
 		musicvolume.setValue(Global.Config.MUSICVOLUME);
 		settings.add(mutemusic);
 		settings.add(musicvolume).padLeft(5).row();
+		
+		settings.add(new Label("Graphics", Assets.instance.skins.skin)).colspan(2).row();
+		
+		final Slider shadowQual = new Slider(0.1f, 2, 0.1f, false, Assets.instance.skins.skin);
+		shadowQual.setValue(Global.Config.SHADOW);
+		settings.add(new Label("Shadows", Assets.instance.skins.skin));
+		settings.add(shadowQual).padLeft(5).row();
+		
 		TextButton save = new TextButton("Apply", Assets.instance.skins.skin);
 		save.addListener(new ChangeListener() {
 
@@ -115,6 +128,7 @@ public class MenuScreen extends AbstractGameScreen {
 				Global.Config.VOLUME = volume.getValue();
 				Global.Config.MUTEMUSIC = !mutemusic.isChecked();
 				Global.Config.MUSICVOLUME = musicvolume.getValue();
+				Global.Config.SHADOW = shadowQual.getValue();
 				Global.Config.save();
 				
 				music.setVolume(Global.Config.MUSICVOLUME);
